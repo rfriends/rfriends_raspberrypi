@@ -1,4 +1,4 @@
-raspberrypi用のrfriends3のインストール方法です。 
+raspberrypi用のrfriends3のインストール方法です。  
 現在は、新規イメージのみを想定しています。  
   
 1. 純正のimagerを使用してmicroSDを作成する。 
@@ -9,7 +9,7 @@ raspberrypi用のrfriends3のインストール方法です。
    sudo apt install git  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
-   sh rfriends3_rasoberrypi.sh  
+   sh rfriends3_raspberrypi.sh  
 5. raspberrypiを再起動する。  
    sudo reboot  
 6. Webブラウザを使用してrfriendsにアクセスする。  
