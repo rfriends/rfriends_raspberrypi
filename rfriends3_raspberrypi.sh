@@ -17,7 +17,7 @@ echo
 echo rfriends for RaspberryPi bullseye $ver
 echo
 # -----------------------------------------
-dir=`pwd`/conf
+dir=.
 user=`whoami`
 # -----------------------------------------
 # swap
@@ -30,16 +30,10 @@ sudo systemctl enable dphys-swapfile
 # -----------------------------------------
 sudo sed -i "/^vm.swappiness/d" /etc/sysctl.conf
 sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
-# -----------------------------------------
-# exim4
-# -----------------------------------------
-sudo apt -y install exim4
+
 # -----------------------------------------
 sudo raspi-config nonint do_boot_wait 0
 sudo raspi-config nonint do_memory_split 16
-
-# NTP時刻同期化を有効化
-sudo timedatectl set-ntp true
 # -----------------------------------------
 # 不要デーモンのoff
 #
@@ -52,26 +46,13 @@ sudo sysv-rc-conf lightdm off
 sudo sysv-rc-conf motd off
 sudo sysv-rc-conf plymouth off
 # -----------------------------------------
-# コンソール
-
-#sudo apt -y install ttf-kochi-gothic xfonts-intl-japanese xfonts-intl-japanese-big xfont-kaname
-#sudo apt -y  install ttf-kochi-gothic xfonts-intl-japanese xfonts-intl-japanese-big
-#sudo apt -y install uim uim-anthy
-#sudo apt -y install jfbterm
-
-#sudo apt install fbterm fonts-ipafont uim-fep uim-mozc
-#sudo apt install gpm                # for mouse
-#sudo chmod u+s /usr/bin/fbterm
-# -----------------------------------------
 # ディレクトリを作成
 #
-#sudo mkdir -p /tmp
 sudo mkdir -p /var/tmp
 sudo mkdir -p /var/log/ConsoleKit
 sudo mkdir -p /var/log/fsck
 sudo mkdir -p /var/log/apt
 sudo mkdir -p /var/log/ntpstats
-#sudo chown ntp.ntp /var/log/ntpstats
 # -----------------------------------------
 # Lastlog, wtmp ,btmp の空ファイルを作成
 #
@@ -84,12 +65,6 @@ sudo chmod 600 /var/log/btmp
 sudo chown root.utmp /var/log/lastlog
 sudo chown root.utmp /var/log/wtmp
 sudo chown root.utmp /var/log/btmp
-
-#sudo rm -rf /tmp
-#sudo rm -rf /var/tmp
-#sudo rm -rf /var/log
-
-#sudo find /var/log/ -type f -name \* -exec cp -f /dev/null {} \;
 # -----------------------------------------
 # ログ出力を減らす
 #
@@ -130,19 +105,6 @@ sudo cp -p $dir/rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
 sudo chown root:root /etc/rc.local
 # -----------------------------------------
-# localeを設定する
-#
-#sudo mv -n /etc/default/locale /etc/default/local.org
-#sudo cp -p $dir/locale /etc/default/locale
-#sudo chmod 644 /etc/default/locale
-# -----------------------------------------
-# .bashrcを設定する
-#
-cd  ~/
-sudo mv -n .bashrc .bashrc.org
-sudo cp -p $dir/.bashrc .bashrc
-sudo chmod 644 .bashrc
-# -----------------------------------------
 # .vimrcを設定する
 #
 cd  ~/
@@ -173,6 +135,8 @@ EOF
 else echo "already exist"
 fi
 # -----------------------------------------
+# rfriends3のインストール
+# -----------------------------------------
 cd  ~/
 mkdir -p $user/tmp
 mkdir -p $user/smbdir/usr2
@@ -191,7 +155,8 @@ tmpdir = "$user/tmp/"
 EOF
 # -----------------------------------------
 # アプリのインストール
-
+# -----------------------------------------
+sudo apt -y install exim4
 sudo apt -y install samba
 #sudo apt -y install vsftpd
 sudo apt install -y lighttpd php-cgi
@@ -207,10 +172,6 @@ sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 
 sudo systemctl restart smbd nmbd
-# -----------------------------------------
-# ftp setup
-#
-#sudo systemctl enable vsftpd
 # -----------------------------------------
 # setup lighttpd
 #
@@ -232,9 +193,10 @@ sudo systemctl enable lighttpd
 # -----------------------------------------
 cd /etc/logrotate.d
 sudo sed -i -e 's/rotate 7/rotate 1/g' samba
-#sudo sed -i -e 's/rotate 4/rotate 1/' vsftpd
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-base
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-paniclog
+# -----------------------------------------
+# 作成日
 # -----------------------------------------
 sudo touch /boot/rf3info
 exit 0
