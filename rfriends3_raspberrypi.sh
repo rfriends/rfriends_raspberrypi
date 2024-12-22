@@ -52,19 +52,6 @@ git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
 sh rfriends3_ubuntu.sh
 # -----------------------------------------
-# ユーザディレクトリの設定
-# -----------------------------------------
-dir=$(cd $(dirname $0);pwd)
-echo $dir
-#
-cat <<EOF | sudo tee ~/rfriends3/config/usrdir.ini > /dev/null
-#
-# 書換不可
-#
-usrdir = "/home/$user/smbdir/usr2/"
-tmpdir = "/home/$user/tmp/"
-EOF
-# -----------------------------------------
 # rc.localを設定する
 # -----------------------------------------
 grep rfriends /etc/rc.local > /dev/null
@@ -97,43 +84,6 @@ tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 EOF
 else echo "already exist"
 fi
-# =========================================
-# アプリのインストール
-# =========================================
-# -----------------------------------------
-# setup samba 
-# -----------------------------------------
-sudo apt -y install samba
-#
-# log
-sudo mkdir -p /var/log/samba
-sudo chown root.adm /var/log/samba
-
-sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.org
-sudo cp -p $dir/smb.conf /etc/samba/smb.conf
-sudo chown root:root /etc/samba/smb.conf
-
-sudo systemctl enable smbd nmbd
-# -----------------------------------------
-# setup lighttpd
-# -----------------------------------------
-sudo apt install -y lighttpd php-cgi
-#
-sudo mv -n /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/.
-sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
-
-sudo mv -n /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
-sudo cp -p $dir/lighttpd.conf /etc/lighttpd/.
-sudo chown root:root /etc/lighttpd/lighttpd.conf
-
-sudo cp -p $dir/rfriends3_boot.txt /home/$user/rfriends3/.
-
-mkdir -p /home/$user/lighttpd/uploads/
-sudo lighttpd-enable-mod fastcgi
-sudo lighttpd-enable-mod fastcgi-php
-
-sudo systemctl enable lighttpd
 # =========================================
 # システムの軽量化
 # =========================================
