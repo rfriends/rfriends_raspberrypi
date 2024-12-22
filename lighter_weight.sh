@@ -18,6 +18,9 @@ echo
 # =========================================
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
+#
+sudo raspi-config nonint do_boot_wait 0
+sudo raspi-config nonint do_memory_split 16
 # =========================================
 # システムの軽量化
 # =========================================
