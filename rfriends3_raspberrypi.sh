@@ -84,6 +84,8 @@ sh rfriends3_ubuntu.sh
 # -----------------------------------------
 # ユーザディレクトリの設定
 # -----------------------------------------
+dir=$(cd $(dirname $0);pwd)
+#
 cat <<EOF | sudo tee ~/rfriends3/config/usrdir.ini > /dev/null
 #
 # 書換不可
