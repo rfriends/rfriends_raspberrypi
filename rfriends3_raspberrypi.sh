@@ -96,6 +96,7 @@ fi
 grep rfriends /etc/rc.local > /dev/null
 if [ $? = 1 ]; then
   sudo cp -n /etc/rc.local /etc/rc.local.org
+  sed -i 's/rfriendsuser/$user/g $dir/rc.local
   cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
 fi
 # =========================================
