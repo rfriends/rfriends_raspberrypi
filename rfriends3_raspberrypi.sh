@@ -16,9 +16,7 @@ echo
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
-sudo apt update
-sudo apt upgrade -y
-
+#sudo apt update && sudo apt upgrade -y
 sudo apt -y install exim4
 # -----------------------------------------
 # .vimrcを設定する
