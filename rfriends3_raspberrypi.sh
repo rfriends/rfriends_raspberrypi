@@ -18,6 +18,7 @@ user=`whoami`
 # -----------------------------------------
 #sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get -y install exim4
+sudo iwconfig wlan0 power off
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
