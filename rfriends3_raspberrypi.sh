@@ -9,27 +9,38 @@
 # 3.2.0 2024/12/22
 ver=3.2.0
 # =========================================
+os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
+if [ $os = 'bookwarm' ]; then
+ boot=/boot/firmware
+else
+ boot=/boot
+fi
+# =========================================
 echo
-echo rfriends for RaspberryPi bullseye $ver
+echo Lighter weight rfriends for RaspberryPi($os) $ver
 echo
 # =========================================
-os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
 #sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get -y install exim4
+#
+# wifi power management off
 sudo iwconfig wlan0 power off
+#
+sudo raspi-config nonint do_boot_wait 0
+sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
-sudo mv -n .vimrc .vimrc.org
+mv -n .vimrc .vimrc.org
 cat <<EOF > .vimrc
 set encoding=utf-8
 set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
 set fileformats=unix,dos,mac
 EOF
-sudo chmod 644 .vimrc
+chmod 644 .vimrc
 # -----------------------------------------
 # swap
 # -----------------------------------------
@@ -41,9 +52,6 @@ sudo systemctl enable dphys-swapfile
 # -----------------------------------------
 sudo sed -i "/^vm.swappiness/d" /etc/sysctl.conf
 sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
-# -----------------------------------------
-sudo raspi-config nonint do_boot_wait 0
-sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # ディレクトリ作成
 # -----------------------------------------
