@@ -1,7 +1,7 @@
 raspberrypi用のrfriends3のインストール方法です。  
 現在は、新規イメージのみを想定しています。  
   
-1. 純正のimagerを使用してmicroSDを作成する。 
+1. 純正のimagerを使用してmicroSDを作成する。(bullseye 32bits)   
 2. microSDをraspberrypiにセットし起動する。  
    領域拡張が完了するのを待つ。  
 3. sshでraspberrypiにアクセスする。  
