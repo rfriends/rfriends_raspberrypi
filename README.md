@@ -6,14 +6,15 @@ raspberrypi用のrfriends3のインストール方法です。
    領域拡張が完了するのを待つ。  
 3. sshでraspberrypiにアクセスする。  
 4. セットアップシェルを実行する。  
-   cd  ~/  
+   cd  ~/
+   sudo apt update && sudo apt upgrade -y
    sudo apt install git  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
    sh rfriends3_raspberrypi.sh 2>&1 | tee rfriends3.log
-5. raspberrypiを再起動する。  
+6. raspberrypiを再起動する。  
    sudo reboot  
-6. Webブラウザを使用してrfriendsにアクセスする。  
+7. Webブラウザを使用してrfriendsにアクセスする。  
    http://xxx.xxx.xxx.xxx:8000
    
 rfriends3イメージからのインストール簡易版は以下を参照ください。  
