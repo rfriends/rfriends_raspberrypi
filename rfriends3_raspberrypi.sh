@@ -20,21 +20,6 @@ echo
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
-# swap
-# -----------------------------------------
-sudo systemctl stop dphys-swapfile
-sudo sed -i "/^CONF_SWAPSIZE/cCONF_SWAPSIZE=256" /etc/dphys-swapfile
-sudo systemctl enable dphys-swapfile
-# -----------------------------------------
-# swappiness
-# -----------------------------------------
-sudo sed -i "/^vm.swappiness/d" /etc/sysctl.conf
-sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
-
-# -----------------------------------------
-sudo raspi-config nonint do_boot_wait 0
-sudo raspi-config nonint do_memory_split 16
-# -----------------------------------------
 # 不要デーモンのoff
 #
 sudo apt -y install sysv-rc-conf
@@ -98,6 +83,20 @@ sudo sed -i -e 's/rotate 12/rotate 1/' dpkg
 sudo sed -i -e 's/rotate 7/rotate 1/'  rsyslog
 sudo sed -i -e 's/rotate 4/rotate 1/'  rsyslog
 # -----------------------------------------
+# swap
+# -----------------------------------------
+sudo systemctl stop dphys-swapfile
+sudo sed -i "/^CONF_SWAPSIZE/cCONF_SWAPSIZE=256" /etc/dphys-swapfile
+sudo systemctl enable dphys-swapfile
+# -----------------------------------------
+# swappiness
+# -----------------------------------------
+sudo sed -i "/^vm.swappiness/d" /etc/sysctl.conf
+sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
+# -----------------------------------------
+sudo raspi-config nonint do_boot_wait 0
+sudo raspi-config nonint do_memory_split 16
+# -----------------------------------------
 # rc.localを設定する
 #
 sudo mv -n /etc/rc.local /etc/rc.local.org
@@ -109,10 +108,13 @@ sudo chown root:root /etc/rc.local
 #
 cd  ~/
 sudo mv -n .vimrc .vimrc.org
-sudo cp -p $dir/.vimrc .vimrc
+sudo cp -p $dir/vimrc .vimrc
 sudo chmod 644 .vimrc
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
+#
+mkdir -p $user/tmp
+mkdir -p $user/smbdir/usr2
 #
 grep rfriends /etc/fstab
 if [ $? = 1 ]; then
@@ -138,9 +140,6 @@ fi
 # rfriends3のインストール
 # -----------------------------------------
 cd  ~/
-mkdir -p $user/tmp
-mkdir -p $user/smbdir/usr2
-
 sudo apt install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
