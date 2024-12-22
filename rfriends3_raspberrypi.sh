@@ -16,8 +16,8 @@ echo
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
-#sudo apt update && sudo apt upgrade -y
-sudo apt -y install exim4
+#sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get -y install exim4
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
@@ -51,7 +51,7 @@ mkdir -p /home/$user/smbdir/usr2
 # rfriends3のインストール
 # =========================================
 cd  ~/
-sudo apt install git
+sudo apt-get install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
 sh rfriends3_ubuntu.sh
