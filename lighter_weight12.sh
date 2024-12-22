@@ -25,9 +25,24 @@ user=`whoami`
 # CAMERAモジュールの停止
 sed -i '/camera_auto_detect/s/^/#/' $boot/config.txt 
 # -----------------------------------------
-# -----------------------------------------
 # 不要デーモンのoff
 # -----------------------------------------
+sudo systemctl disable dbus
+sudo systemctl disable triggerhappy
+# -----------------------------------------
+# ジャーナル
+# -----------------------------------------
+#Storage=none
+sudo mv -n /etc/systemd/journald.conf /etc/systemd/journald.conf.org
+sudo cp -p $dir/journald.conf /etc/systemd
+sudo chmod 644 /etc/systemd/journald.conf
+sudo chown root:root /etc/systemd/journald.conf
+# -----------------------------------------
+# console
+# -----------------------------------------
+sudo cp -p $dir/console-setup /etc/default/.
+sudo chmod 644 /etc/default/console-setup
+sudo chown roort:root /etc/default/console-setup
 sudo apt-get -y install sysv-rc-conf
 
 sudo sysv-rc-conf dbus off
