@@ -69,7 +69,7 @@ sudo chown root.utmp /var/log/btmp
 # ログ出力を減らす
 #
 sudo mv /etc/rsyslog.conf /etc/rsyslog.conf.org
-sudo cp -p $dir/rsyslog.conf /etc/rsyslog.conf
+sudo cp -p rsyslog.conf /etc/rsyslog.conf
 sudo chown root:root /etc/rsyslog.conf
 
 sudo sed -i -e 's/^daemon.*/#daemon.*/' /etc/rsyslog.conf
@@ -168,7 +168,7 @@ sudo mkdir -p /var/log/samba
 sudo chown root.adm /var/log/samba
 
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.org
-sudo cp -p $dir/smb.conf /etc/samba/smb.conf
+sudo cp -p smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 
 sudo systemctl restart smbd nmbd
@@ -176,7 +176,7 @@ sudo systemctl restart smbd nmbd
 # setup lighttpd
 #
 sudo mv -n /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/.
+sudo cp -p 15-fastcgi-php.conf /etc/lighttpd/conf-available/.
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
 
 sudo mv -n /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
