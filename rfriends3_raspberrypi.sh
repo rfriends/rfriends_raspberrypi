@@ -35,10 +35,11 @@ sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # rc.localを設定する
 # -----------------------------------------
-sudo mv -n /etc/rc.local /etc/rc.local.org
-sudo cp -p $dir/rc.local /etc/rc.local
-sudo chmod +x /etc/rc.local
-sudo chown root:root /etc/rc.local
+grep rfriends /etc/rc.local
+if [ $? = 1 ]; then
+  sudo mv -n /etc/rc.local /etc/rc.local.org
+  cat $dir/rc.local | sudo tee -a /etc/rc.local
+fi
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
