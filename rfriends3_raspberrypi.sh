@@ -22,7 +22,11 @@ sudo apt -y install exim4
 # .vimrcを設定する
 # -----------------------------------------
 sudo mv -n .vimrc .vimrc.org
-sudo cp -p $dir/vimrc .vimrc
+cat <<EOF > .vimrc
+set encoding=utf-8
+set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
+set fileformats=unix,dos,mac
+EOF
 sudo chmod 644 .vimrc
 # -----------------------------------------
 # swap
