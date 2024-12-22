@@ -48,22 +48,20 @@ sudo chown root.utmp /var/log/btmp
 # -----------------------------------------
 # ログ出力を減らす
 # -----------------------------------------
-sudo mv /etc/rsyslog.conf /etc/rsyslog.conf.org
-sudo cp -p $dir/rsyslog.conf /etc/rsyslog.conf
-sudo chown root:root /etc/rsyslog.conf
+sudo cp -n /etc/rsyslog.conf /etc/rsyslog.conf.org
 
-sudo sed -i -e 's/^daemon.*/#daemon.*/' /etc/rsyslog.conf
-sudo sed -i -e 's/^lpr.*/#lpr.*/' /etc/rsyslog.conf
-sudo sed -i -e 's/^mail.*/#mail.*/' /etc/rsyslog.conf
-sudo sed -i -e 's/^user.*/#user.*/' /etc/rsyslog.conf
+sed -i "s/^daemon.*/#/" /etc/rsyslog.conf
+sed -i "s/^lpr.*/#/"    /etc/rsyslog.conf
+sed -i "s/^mail.*/#/"   /etc/rsyslog.conf
+sed -i "s/^user.*/#/"   /etc/rsyslog.conf
 
-sudo sed -i -e 's/^mail.info/#mail.info/' /etc/rsyslog.conf
-sudo sed -i -e 's/^mail.warn/#mail.warn/' /etc/rsyslog.conf
-sudo sed -i -e 's/^mail.err/#mail.err/' /etc/rsyslog.conf
+sed -i "s/^mail.info/#/" /etc/rsyslog.conf
+sed -i "s/^mail.warn/#/" /etc/rsyslog.conf
+sed -i "s/^mail.err/#/"  /etc/rsyslog.conf
 
-sudo sed -i -e 's/^news.crit/#news.crit/' /etc/rsyslog.conf
-sudo sed -i -e 's/^news.err/#news.err/' /etc/rsyslog.conf
-sudo sed -i -e 's/^news.notice/#news.notice/' /etc/rsyslog.conf
+#sudo sed -i -e 's/^news.crit/#news.crit/' /etc/rsyslog.conf
+#sudo sed -i -e 's/^news.err/#news.err/' /etc/rsyslog.conf
+#sudo sed -i -e 's/^news.notice/#news.notice/' /etc/rsyslog.conf
 # -----------------------------------------
 # ログローテートを減らす
 # -----------------------------------------
