@@ -101,12 +101,17 @@ fi
 # =========================================
 # システムの軽量化
 # =========================================
-# メッセージバス
-#sudo systemctl disable dbus
-# キーボード ショートカット
+sudo systemctl disable dbus
 sudo systemctl disable triggerhappy
+#sudo systemctl disable alsa-utils
+sudo systemctl disable lightdm
+sudo systemctl disable motd
+sudo systemctl disable plymouth
+#
 # CAMERAモジュール
 sed -i '/^camera_auto_detect/s/^/#/' $boot/config.txt 
+#
+# OS別
 #
 if [ $os = 'bookwarm' ]; then
   sh $dir/lighter_weight12.sh
