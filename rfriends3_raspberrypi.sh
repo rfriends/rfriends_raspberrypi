@@ -17,7 +17,7 @@ echo
 echo rfriends for RaspberryPi bullseye $ver
 echo
 # -----------------------------------------
-dir=.
+dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
 # swap
