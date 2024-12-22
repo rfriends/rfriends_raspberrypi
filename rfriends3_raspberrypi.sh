@@ -55,6 +55,7 @@ sh rfriends3_ubuntu.sh
 # ユーザディレクトリの設定
 # -----------------------------------------
 dir=$(cd $(dirname $0);pwd)
+echo $dir
 #
 cat <<EOF | sudo tee ~/rfriends3/config/usrdir.ini > /dev/null
 #
@@ -66,15 +67,15 @@ EOF
 # -----------------------------------------
 # rc.localを設定する
 # -----------------------------------------
-grep rfriends /etc/rc.local
+grep rfriends /etc/rc.local > /dev/null
 if [ $? = 1 ]; then
-  sudo mv -n /etc/rc.local /etc/rc.local.org
+  sudo cp -n /etc/rc.local /etc/rc.local.org
   cat $dir/rc.local | sudo tee -a /etc/rc.local
 fi
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
-grep rfriends /etc/fstab
+grep rfriends /etc/fstab > /dev/null
 if [ $? = 1 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
 #
@@ -139,5 +140,7 @@ sh $dir/lighter_weight.sh
 # 作成日
 # =========================================
 sudo touch /boot/rf3info
+#
+echo finished
 exit 0
 # -----------------------------------------
