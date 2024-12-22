@@ -80,3 +80,5 @@ sudo sed -i -e 's/rotate 7/rotate 1/g' samba
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-base
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-paniclog
 # -----------------------------------------
+echo finished
+# -----------------------------------------
