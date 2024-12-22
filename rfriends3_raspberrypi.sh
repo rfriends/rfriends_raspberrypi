@@ -111,9 +111,14 @@ fi
 # =========================================
 grep rfriends /etc/rc.local > /dev/null
 if [ $? = 1 ]; then
+  if [ $os = 'bookworm' ]; then
+    rc=rc.local12
+  else
+    rc=rc.local
+  fi
   sudo cp -n /etc/rc.local /etc/rc.local.org
-  sed -i 's/rfriendsuser/$user/g $dir/rc.local
-  cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
+  sed -i 's/rfriendsuser/$user/g $dir/$rc
+  cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
 fi
 # =========================================
 # システムの軽量化
