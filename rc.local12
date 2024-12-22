@@ -8,7 +8,7 @@ fi
 # rfriends
 # -----------------------------------------
 # lighttpd
-rm /home/rpi/lighttpd/error.log
+rm /home/rfriendsuser/lighttpd/error.log
 # -----------------------------------------
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
