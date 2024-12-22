@@ -23,7 +23,7 @@ sudo mkdir -p /var/log/exim4
 chown root.adm /var/log/samba
 chown Debian-exim.adm /var/log/exim4
 
-# loghttpd
+# lighttpd
 rm /home/rpi/lighttpd/error.log
 
 #mkdir ~/tmp
