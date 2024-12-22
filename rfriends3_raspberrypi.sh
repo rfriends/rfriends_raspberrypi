@@ -12,8 +12,10 @@ ver=3.2.0
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 if [ $os = 'bookwarm' ]; then
  boot=/boot/firmware
+ rc=rc.local12
 else
  boot=/boot
+ rc=rc.local
 fi
 # =========================================
 echo
@@ -108,13 +110,8 @@ fi
 # =========================================
 grep rfriends /etc/rc.local > /dev/null
 if [ $? = 1 ]; then
-  if [ $os = 'bookworm' ]; then
-    rc=rc.local12
-  else
-    rc=rc.local
-  fi
   sudo cp -n /etc/rc.local /etc/rc.local.org
-  sed -i 's/rfriendsuser/$user/g $dir/$rc
+  sed -i 's/rfriendsuser/$user/g' $dir/$rc
   cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
 fi
 # =========================================
