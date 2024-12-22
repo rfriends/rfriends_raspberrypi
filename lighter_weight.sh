@@ -17,7 +17,7 @@ user=`whoami`
 # -----------------------------------------
 # 不要デーモンのoff
 # -----------------------------------------
-sudo apt -y install sysv-rc-conf
+sudo apt-get -y install sysv-rc-conf
 
 sudo sysv-rc-conf dbus off
 sudo sysv-rc-conf triggerhappy off
