@@ -66,14 +66,6 @@ git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
 sh rfriends3_ubuntu.sh
 # -----------------------------------------
-# rc.localを設定する
-# -----------------------------------------
-grep rfriends /etc/rc.local > /dev/null
-if [ $? = 1 ]; then
-  sudo cp -n /etc/rc.local /etc/rc.local.org
-  cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
-fi
-# -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
 grep rfriends /etc/fstab > /dev/null
@@ -97,6 +89,14 @@ tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 #
 EOF
 else echo "already exist"
+fi
+# =========================================
+# rc.localを設定する
+# =========================================
+grep rfriends /etc/rc.local > /dev/null
+if [ $? = 1 ]; then
+  sudo cp -n /etc/rc.local /etc/rc.local.org
+  cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
 fi
 # =========================================
 # システムの軽量化
