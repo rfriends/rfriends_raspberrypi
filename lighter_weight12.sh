@@ -25,10 +25,7 @@ user=`whoami`
 # ジャーナル
 # -----------------------------------------
 #Storage=none
-sudo mv -n /etc/systemd/journald.conf /etc/systemd/journald.conf.org
-sudo cp -p $dir/journald.conf /etc/systemd
-sudo chmod 644 /etc/systemd/journald.conf
-sudo chown root:root /etc/systemd/journald.conf
+sudo sed  -i "/#Storage=auto/c Storage=none" /etc/systemd/journald.conf
 # -----------------------------------------
 # console
 # -----------------------------------------
