@@ -79,6 +79,8 @@ grep rfriends /etc/fstab > /dev/null
 if [ $? = 1 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
 #
+# rfriends
+#
 # mount ramdisk /tmp,/var/tmp,/var/log
 tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777 0 0
 tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
