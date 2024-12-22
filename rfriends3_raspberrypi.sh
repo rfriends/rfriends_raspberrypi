@@ -48,6 +48,7 @@ VIDEOMODE=
 # The following is an example how to use a braille font
 # FONT='lat9w-08.psf.gz brl-8x8.psf'
 EOF
+fi
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
