@@ -22,20 +22,6 @@ user=`whoami`
 # システムの軽量化
 # =========================================
 # -----------------------------------------
-# CAMERAモジュールの停止
-sed -i '/camera_auto_detect/s/^/#/' $boot/config.txt 
-# -----------------------------------------
-# 不要デーモンのoff
-# -----------------------------------------
-sudo apt-get -y install sysv-rc-conf
-
-sudo sysv-rc-conf dbus off
-sudo sysv-rc-conf triggerhappy off
-sudo sysv-rc-conf alsa-utils off
-sudo sysv-rc-conf lightdm off
-sudo sysv-rc-conf motd off
-sudo sysv-rc-conf plymouth off
-# -----------------------------------------
 # ディレクトリを作成
 # -----------------------------------------
 sudo mkdir -p /var/tmp
@@ -60,18 +46,14 @@ sudo chown root.utmp /var/log/btmp
 # -----------------------------------------
 sudo cp -n /etc/rsyslog.conf /etc/rsyslog.conf.org
 
-sed -i "s/^daemon.*/#/" /etc/rsyslog.conf
-sed -i "s/^lpr.*/#/"    /etc/rsyslog.conf
-sed -i "s/^mail.*/#/"   /etc/rsyslog.conf
-sed -i "s/^user.*/#/"   /etc/rsyslog.conf
+sudo sed -i "/^mail.info/s/^/#/" /etc/rsyslog.conf
+sudo sed -i "/^mail.warn/s/^/#/" /etc/rsyslog.conf
+sudo sed -i "/^mail.err/s/^/#/"  /etc/rsyslog.conf
 
-sed -i "s/^mail.info/#/" /etc/rsyslog.conf
-sed -i "s/^mail.warn/#/" /etc/rsyslog.conf
-sed -i "s/^mail.err/#/"  /etc/rsyslog.conf
-
-#sudo sed -i -e 's/^news.crit/#news.crit/' /etc/rsyslog.conf
-#sudo sed -i -e 's/^news.err/#news.err/' /etc/rsyslog.conf
-#sudo sed -i -e 's/^news.notice/#news.notice/' /etc/rsyslog.conf
+sudo sed -i "/^daemon./s/^/#/" /etc/rsyslog.conf
+sudo sed -i "/^lpr./s/^/#/"    /etc/rsyslog.conf
+sudo sed -i "/^mail./s/^/#/"   /etc/rsyslog.conf
+sudo sed -i "/^user./s/^/#/"   /etc/rsyslog.conf
 # -----------------------------------------
 # ログローテートを減らす
 # -----------------------------------------
