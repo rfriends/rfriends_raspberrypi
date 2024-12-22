@@ -10,6 +10,11 @@ echo Lighter weight rfriends for RaspberryPi bullseye $ver
 echo
 # =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
+if [ os=bookwarm ]; then
+ boot=/boot/firmware
+else
+ boot=/boot
+fi
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # =========================================
@@ -17,6 +22,7 @@ user=`whoami`
 # =========================================
 # -----------------------------------------
 # CAMERAモジュールの停止
+sed -i '/検索文字列/s/^/#/' 
 # -----------------------------------------
 # -----------------------------------------
 # 不要デーモンのoff
