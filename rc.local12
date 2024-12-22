@@ -12,8 +12,8 @@ rm /home/rpi/lighttpd/error.log
 # -----------------------------------------
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
-  sudo sh -c "echo $_IP > /boot/IPaddress.txt"
-  sudo sh -c "date >> /boot/IPaddress.txt"
+  sudo sh -c "echo $_IP > /boot/firmware/IPaddress.txt"
+  sudo sh -c "date >> /boot/firmware/IPaddress.txt"
 fi
 
 sh /home/rfriendsuser/rfriends3/rfriends3_boot.sh
