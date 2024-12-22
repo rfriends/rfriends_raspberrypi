@@ -34,26 +34,25 @@ sudo raspi-config nonint do_boot_wait 0
 sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # rc.localを設定する
-#
+# -----------------------------------------
 sudo mv -n /etc/rc.local /etc/rc.local.org
 sudo cp -p $dir/rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
 sudo chown root:root /etc/rc.local
 # -----------------------------------------
 # .vimrcを設定する
-#
-cd  ~/
+# -----------------------------------------
 sudo mv -n .vimrc .vimrc.org
 sudo cp -p $dir/vimrc .vimrc
 sudo chmod 644 .vimrc
 # -----------------------------------------
 # ディレクトリ作成
-#
+# -----------------------------------------
 mkdir -p /home/$user/tmp
 mkdir -p /home/$user/smbdir/usr
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
-#
+# -----------------------------------------
 grep rfriends /etc/fstab
 if [ $? = 1 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
@@ -83,6 +82,8 @@ git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
 sh rfriends3_ubuntu.sh
 # -----------------------------------------
+# ユーザディレクトリの設定
+# -----------------------------------------
 cat <<EOF | sudo tee ~/rfriends3/config/usrdir.ini > /dev/null
 #
 # 書換不可
@@ -95,7 +96,6 @@ EOF
 # -----------------------------------------
 sudo apt -y install exim4
 sudo apt -y install samba
-#sudo apt -y install vsftpd
 sudo apt install -y lighttpd php-cgi
 # -----------------------------------------
 # setup samba 
@@ -105,7 +105,7 @@ sudo mkdir -p /var/log/samba
 sudo chown root.adm /var/log/samba
 
 sudo mv /etc/samba/smb.conf /etc/samba/smb.conf.org
-sudo cp -p smb.conf /etc/samba/smb.conf
+sudo cp -p $dir/smb.conf /etc/samba/smb.conf
 sudo chown root:root /etc/samba/smb.conf
 
 sudo systemctl enable smbd nmbd
@@ -113,7 +113,7 @@ sudo systemctl enable smbd nmbd
 # setup lighttpd
 # -----------------------------------------
 sudo mv -n /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
-sudo cp -p 15-fastcgi-php.conf /etc/lighttpd/conf-available/.
+sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/.
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
 
 sudo mv -n /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
@@ -165,7 +165,7 @@ sudo chown root.utmp /var/log/btmp
 # ログ出力を減らす
 # -----------------------------------------
 sudo mv /etc/rsyslog.conf /etc/rsyslog.conf.org
-sudo cp -p rsyslog.conf /etc/rsyslog.conf
+sudo cp -p $dir/rsyslog.conf /etc/rsyslog.conf
 sudo chown root:root /etc/rsyslog.conf
 
 sudo sed -i -e 's/^daemon.*/#daemon.*/' /etc/rsyslog.conf
