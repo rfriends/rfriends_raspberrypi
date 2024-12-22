@@ -34,11 +34,19 @@ sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # console
 # -----------------------------------------
-if [ $os = 'bookwarm' ]; then
-  sudo cp -p $dir/console-setup /etc/default/.
-  sudo chmod 644 /etc/default/console-setup
-  sudo chown roort:root /etc/default/console-setup
-fi
+if [ ! -e /etc/default/console-setup ]; then
+cat <<EOF | sudo tee /etc/default/console-setup > /dev/null
+# CONFIGURATION FILE FOR SETUPCON
+# Consult the console-setup(5) manual page.
+ACTIVE_CONSOLES="/dev/tty[1-6]"
+CHARMAP="UTF-8"
+CODESET="guess"
+FONTFACE="VGA"
+FONTSIZE="16x32"
+VIDEOMODE=
+# The following is an example how to use a braille font
+# FONT='lat9w-08.psf.gz brl-8x8.psf'
+EOF
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
