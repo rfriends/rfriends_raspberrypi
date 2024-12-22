@@ -19,6 +19,8 @@ echo
 # -----------------------------------------
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
+
+sudo apt update
 # -----------------------------------------
 # 不要デーモンのoff
 #
@@ -113,8 +115,8 @@ sudo chmod 644 .vimrc
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 #
-mkdir -p $user/tmp
-mkdir -p $user/smbdir/usr2
+mkdir -p /home/$user/tmp
+mkdir -p /home/$user/smbdir/usr2
 #
 grep rfriends /etc/fstab
 if [ $? = 1 ]; then
@@ -125,13 +127,13 @@ tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777 0 0
 tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
 tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
 #
-# mount ramdisk $user/tmp
-tmpfs $user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
+# mount ramdisk /home/$user/tmp
+tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 #
-# mount usb memory $user/smbdir
+# mount usb memory /home/$user/smbdir
 #
-#UUID= $user/smbdir   ext4    defaults    0   0
-#PARTUUID= $user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
+#UUID= /home/$user/smbdir   ext4    defaults    0   0
+#PARTUUID= /home/$user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
 
 EOF
 else echo "already exist"
@@ -149,8 +151,8 @@ cat <<EOF | sudo tee ~/rfriends3/config/usrdir.ini > /dev/null
 #
 # 書換不可
 #
-usrdir = "$user/smbdir/usr2/"
-tmpdir = "$user/tmp/"
+usrdir = "/home/$user/smbdir/usr2/"
+tmpdir = "/home/$user/tmp/"
 EOF
 # -----------------------------------------
 # アプリのインストール
@@ -182,9 +184,9 @@ sudo mv -n /etc/lighttpd/lighttpd.conf /etc/lighttpd/lighttpd.conf.org
 sudo cp -p $dir/lighttpd.conf /etc/lighttpd/.
 sudo chown root:root /etc/lighttpd/lighttpd.conf
 
-sudo cp -p $dir/rfriends3_boot.txt $user/rfriends3/.
+sudo cp -p $dir/rfriends3_boot.txt /home/$user/rfriends3/.
 
-mkdir -p $user/lighttpd/uploads/
+mkdir -p /home/$user/lighttpd/uploads/
 sudo lighttpd-enable-mod fastcgi
 sudo lighttpd-enable-mod fastcgi-php
 
