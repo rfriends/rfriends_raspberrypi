@@ -4,41 +4,11 @@ _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
-#
+# -----------------------------------------
 # rfriends
-#
 # -----------------------------------------
-# ディレクトリを作成
-#
-#sudo mkdir -p /tmp
-#sudo mkdir -p /var/tmp
-sudo mkdir -p /var/log/ConsoleKit
-sudo mkdir -p /var/log/samba
-sudo mkdir -p /var/log/fsck
-sudo mkdir -p /var/log/apt
-sudo mkdir -p /var/log/ntpstats
-#sudo chown ntp.ntp /var/log/ntpstats
-sudo mkdir -p /var/log/exim4
-
-chown root.adm /var/log/samba
-chown Debian-exim.adm /var/log/exim4
-
-# loghttpd
+# lighttpd
 rm /home/rpi/lighttpd/error.log
-
-#mkdir ~/tmp
-# -----------------------------------------
-# Lastlog, wtmp ,btmp の空ファイルを作成
-#
-#sudo touch /var/log/lastlog
-#sudo touch /var/log/wtmp
-#sudo touch /var/log/btmp
-#sudo chmod 664 /var/log/lastlog
-#sudo chmod 664 /var/log/wtmp
-#sudo chmod 600 /var/log/btmp
-#sudo chown root.utmp /var/log/lastlog
-#sudo chown root.utmp /var/log/wtmp
-#sudo chown root.utmp /var/log/btmp
 # -----------------------------------------
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
@@ -46,4 +16,4 @@ if [ "$_IP" ]; then
   sudo sh -c "date >> /boot/IPaddress.txt"
 fi
 
-sh /home/rpi/rfriends3/rfriends3_boot.sh
+sh /home/rfriendsuser/rfriends3/rfriends3_boot.sh
