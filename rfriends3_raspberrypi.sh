@@ -13,6 +13,7 @@ echo
 echo rfriends for RaspberryPi bullseye $ver
 echo
 # =========================================
+os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
