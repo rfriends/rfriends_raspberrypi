@@ -13,9 +13,11 @@ os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 if [ $os = 'bookwarm' ]; then
  boot=/boot/firmware
  rc=rc.local12
+ lighter=lighter_weight12
 else
  boot=/boot
  rc=rc.local
+ lighter=lighter_weight
 fi
 # =========================================
 echo
@@ -103,7 +105,8 @@ tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 #PARTUUID= /home/$user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
 #
 EOF
-else echo "already exist"
+else 
+  echo "already exist"
 fi
 # =========================================
 # rc.localを設定する
@@ -127,13 +130,7 @@ sudo systemctl disable plymouth
 # CAMERAモジュール
 sed -i '/^camera_auto_detect/s/^/#/' $boot/config.txt 
 #
-# OS別
-#
-if [ $os = 'bookwarm' ]; then
-  sh $dir/lighter_weight12.sh
-else
-  sh $dir/lighter_weight.sh
-fi
+sh $dir/$lighter.sh
 # =========================================
 # 終了
 # =========================================
