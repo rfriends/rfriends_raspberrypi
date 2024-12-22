@@ -18,6 +18,14 @@ user=`whoami`
 # -----------------------------------------
 sudo apt update
 sudo apt upgrade -y
+
+sudo apt -y install exim4
+# -----------------------------------------
+# .vimrcを設定する
+# -----------------------------------------
+sudo mv -n .vimrc .vimrc.org
+sudo cp -p $dir/vimrc .vimrc
+sudo chmod 644 .vimrc
 # -----------------------------------------
 # swap
 # -----------------------------------------
@@ -33,47 +41,10 @@ sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
 sudo raspi-config nonint do_boot_wait 0
 sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
-# rc.localを設定する
-# -----------------------------------------
-grep rfriends /etc/rc.local
-if [ $? = 1 ]; then
-  sudo mv -n /etc/rc.local /etc/rc.local.org
-  cat $dir/rc.local | sudo tee -a /etc/rc.local
-fi
-# -----------------------------------------
-# .vimrcを設定する
-# -----------------------------------------
-sudo mv -n .vimrc .vimrc.org
-sudo cp -p $dir/vimrc .vimrc
-sudo chmod 644 .vimrc
-# -----------------------------------------
 # ディレクトリ作成
 # -----------------------------------------
 mkdir -p /home/$user/tmp
 mkdir -p /home/$user/smbdir/usr2
-# -----------------------------------------
-# テンポラリ領域をtmpfs（Ramdisk上）に設定する
-# -----------------------------------------
-grep rfriends /etc/fstab
-if [ $? = 1 ]; then
-cat <<EOF | sudo tee -a /etc/fstab > /dev/null
-#
-# mount ramdisk /tmp,/var/tmp,/var/log
-tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777 0 0
-tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
-tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
-#
-# mount ramdisk /home/$user/tmp
-tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
-#
-# mount usb memory /home/$user/smbdir
-#
-#UUID= /home/$user/smbdir   ext4    defaults    0   0
-#PARTUUID= /home/$user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
-
-EOF
-else echo "already exist"
-fi
 # =========================================
 # rfriends3のインストール
 # =========================================
@@ -95,14 +66,44 @@ usrdir = "/home/$user/smbdir/usr2/"
 tmpdir = "/home/$user/tmp/"
 EOF
 # -----------------------------------------
-# アプリのインストール
+# rc.localを設定する
 # -----------------------------------------
-sudo apt -y install exim4
-sudo apt -y install samba
-sudo apt install -y lighttpd php-cgi
+grep rfriends /etc/rc.local
+if [ $? = 1 ]; then
+  sudo mv -n /etc/rc.local /etc/rc.local.org
+  cat $dir/rc.local | sudo tee -a /etc/rc.local
+fi
+# -----------------------------------------
+# テンポラリ領域をtmpfs（Ramdisk上）に設定する
+# -----------------------------------------
+grep rfriends /etc/fstab
+if [ $? = 1 ]; then
+cat <<EOF | sudo tee -a /etc/fstab > /dev/null
+#
+# mount ramdisk /tmp,/var/tmp,/var/log
+tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777 0 0
+tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
+tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
+#
+# mount ramdisk /home/$user/tmp
+tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
+#
+# mount usb memory /home/$user/smbdir
+#
+#UUID= /home/$user/smbdir   ext4    defaults    0   0
+#PARTUUID= /home/$user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
+#
+EOF
+else echo "already exist"
+fi
+# =========================================
+# アプリのインストール
+# =========================================
 # -----------------------------------------
 # setup samba 
 # -----------------------------------------
+sudo apt -y install samba
+#
 # log
 sudo mkdir -p /var/log/samba
 sudo chown root.adm /var/log/samba
@@ -115,6 +116,8 @@ sudo systemctl enable smbd nmbd
 # -----------------------------------------
 # setup lighttpd
 # -----------------------------------------
+sudo apt install -y lighttpd php-cgi
+#
 sudo mv -n /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-available/15-fastcgi-php.conf.org
 sudo cp -p $dir/15-fastcgi-php.conf /etc/lighttpd/conf-available/.
 sudo chown root:root /etc/lighttpd/conf-available/15-fastcgi-php.conf
