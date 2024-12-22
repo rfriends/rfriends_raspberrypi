@@ -17,7 +17,7 @@ else
 fi
 # =========================================
 echo
-echo Lighter weight rfriends for RaspberryPi($os) $ver
+echo Lighter weight rfriends $ver for RaspberryPi $os
 echo
 # =========================================
 dir=$(cd $(dirname $0);pwd)
