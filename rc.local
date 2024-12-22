@@ -24,7 +24,7 @@ chown root.adm /var/log/samba
 chown Debian-exim.adm /var/log/exim4
 
 # lighttpd
-rm /home/rpi/lighttpd/error.log
+rm /home/rfriendsuser/lighttpd/error.log
 
 #mkdir ~/tmp
 # -----------------------------------------
@@ -46,4 +46,4 @@ if [ "$_IP" ]; then
   sudo sh -c "date >> /boot/IPaddress.txt"
 fi
 
-sh /home/rpi/rfriends3/rfriends3_boot.sh
+sh /home/rfriendsuser/rfriends3/rfriends3_boot.sh
