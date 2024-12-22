@@ -32,6 +32,14 @@ sudo iwconfig wlan0 power off
 sudo raspi-config nonint do_boot_wait 0
 sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
+# console
+# -----------------------------------------
+if [ $os = 'bookwarm' ]; then
+  sudo cp -p $dir/console-setup /etc/default/.
+  sudo chmod 644 /etc/default/console-setup
+  sudo chown roort:root /etc/default/console-setup
+fi
+# -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
 mv -n .vimrc .vimrc.org
