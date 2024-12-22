@@ -101,17 +101,10 @@ fi
 # =========================================
 # システムの軽量化
 # =========================================
-echo
-echo "システムの軽量化をします　(y/n) ?"
-echo
-echo "実行しますか　(y/n) ?"
-read ans
-if [ "$ans" = "y" ]; then
-    if [ $os = 'bookwarm' ]; then
-      sh $dir/lighter_weight12.sh
-    else
-      sh $dir/lighter_weight.sh
-    fi
+if [ $os = 'bookwarm' ]; then
+  sh $dir/lighter_weight12.sh
+else
+  sh $dir/lighter_weight.sh
 fi
 # =========================================
 # 終了
