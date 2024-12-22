@@ -5,18 +5,17 @@
 # 1.00 2024/12/22
 ver=3.2.0
 # =========================================
-
-
-echo
-echo Lighter weight rfriends for RaspberryPi($os) $ver
-echo
-# =========================================
-
-if [ os = 'bookwarm' ]; then
+os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
+if [ $os = 'bookwarm' ]; then
  boot=/boot/firmware
 else
  boot=/boot
 fi
+# =========================================
+echo
+echo Lighter weight rfriends for RaspberryPi($os) $ver
+echo
+# =========================================
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # =========================================
