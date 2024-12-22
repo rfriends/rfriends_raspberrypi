@@ -17,7 +17,7 @@ else
 fi
 # =========================================
 echo
-echo Lighter weight rfriends $ver for RaspberryPi $os
+echo rfriends_raspberrypi $ver for RaspberryPi $os
 echo
 # =========================================
 dir=$(cd $(dirname $0);pwd)
@@ -28,9 +28,6 @@ sudo apt-get -y install exim4
 #
 # wifi power management off
 sudo iwconfig wlan0 power off
-#
-sudo raspi-config nonint do_boot_wait 0
-sudo raspi-config nonint do_memory_split 16
 # -----------------------------------------
 # console
 # -----------------------------------------
