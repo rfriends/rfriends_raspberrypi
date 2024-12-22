@@ -49,7 +49,7 @@ sudo chmod 644 .vimrc
 # ディレクトリ作成
 # -----------------------------------------
 mkdir -p /home/$user/tmp
-mkdir -p /home/$user/smbdir/usr
+mkdir -p /home/$user/smbdir/usr2
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
