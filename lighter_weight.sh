@@ -5,16 +5,17 @@
 # 1.00 2024/12/22
 ver=3.2.0
 # =========================================
-echo
-echo Lighter weight rfriends for RaspberryPi bullseye $ver
-echo
-# =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
-if [ os = 'bookwarm' ]; then
+if [ $os = 'bookwarm' ]; then
  boot=/boot/firmware
 else
  boot=/boot
 fi
+# =========================================
+echo
+echo Lighter weight rfriends for RaspberryPi($os) $ver
+echo
+# =========================================
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # =========================================
@@ -23,7 +24,6 @@ user=`whoami`
 # -----------------------------------------
 # CAMERAモジュールの停止
 sed -i '/camera_auto_detect/s/^/#/' $boot/config.txt 
-# -----------------------------------------
 # -----------------------------------------
 # 不要デーモンのoff
 # -----------------------------------------
