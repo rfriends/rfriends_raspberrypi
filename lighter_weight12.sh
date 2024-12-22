@@ -27,12 +27,6 @@ user=`whoami`
 #Storage=none
 sudo sed  -i "/#Storage=auto/c Storage=none" /etc/systemd/journald.conf
 # -----------------------------------------
-# console
-# -----------------------------------------
-sudo cp -p $dir/console-setup /etc/default/.
-sudo chmod 644 /etc/default/console-setup
-sudo chown roort:root /etc/default/console-setup
-# -----------------------------------------
 # ログローテートを減らす
 # -----------------------------------------
 sudo sed -i -e 's/rotate 4/rotate 1/' /etc/logrotate.conf
