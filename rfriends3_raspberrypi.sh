@@ -61,7 +61,7 @@ sh rfriends3_ubuntu.sh
 grep rfriends /etc/rc.local > /dev/null
 if [ $? = 1 ]; then
   sudo cp -n /etc/rc.local /etc/rc.local.org
-  cat $dir/rc.local | sudo tee -a /etc/rc.local
+  cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
 fi
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
