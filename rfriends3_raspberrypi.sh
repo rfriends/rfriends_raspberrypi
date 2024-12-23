@@ -90,7 +90,7 @@ sh rfriends3_ubuntu.sh
 # -----------------------------------------
 echo ###### step3
 grep rfriends /etc/fstab > /dev/null
-if [ $? = 1 ]; then
+if [ $? != 0 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
 #
 # rfriends
@@ -116,7 +116,7 @@ fi
 # rc.localを設定する
 # =========================================
 grep rfriends /etc/rc.local > /dev/null
-if [ $? = 1 ]; then
+if [ $? != 0 ]; then
   sudo cp -n /etc/rc.local /etc/rc.local.org
   sed -i 's/rfriendsuser/$user/g' $dir/$rc
   cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
