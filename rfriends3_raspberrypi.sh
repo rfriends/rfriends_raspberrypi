@@ -129,6 +129,19 @@ if [ $? != 0 ]; then
   sed -i 's/rfriendsuser/$user/g' $dir/$rc
   cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
 fi
+# -----------------------------------------
+# .ssh/configを設定する
+# -----------------------------------------
+cd $homedir
+mkdir .ssh
+grep ServerAliveInterval .ssh/config
+if [$? != 0 ]; then
+  echo ServerAliveInterval 60 >> .ssh/config
+fi
+grep TCPKeepAlive .ssh/config
+if [$? != 0 ]; then
+  echo TCPKeepAlive yes >> .ssh/config
+fi
 # =========================================
 # システムの軽量化
 # =========================================
