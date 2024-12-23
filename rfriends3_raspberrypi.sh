@@ -130,17 +130,11 @@ if [ $? != 0 ]; then
   cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
 fi
 # -----------------------------------------
-# .ssh/configを設定する
+# /etc/ssh/sshd_configを設定する
 # -----------------------------------------
-cd $homedir
-mkdir .ssh
-grep ServerAliveInterval .ssh/config
-if [$? != 0 ]; then
-  echo ServerAliveInterval 60 >> .ssh/config
-fi
-grep TCPKeepAlive .ssh/config
-if [$? != 0 ]; then
-  echo TCPKeepAlive yes >> .ssh/config
+if [ -e /etc/ssh/sshd_config ]; then
+  sed -i "/#ClientAliveInterval/cClientAliveInterval 60" /etc/ssh/sshd_config
+  sed -i "/#ClientAliveCountMax/cClientAliveCountMax 3"  /etc/ssh/sshd_config
 fi
 # =========================================
 # システムの軽量化
