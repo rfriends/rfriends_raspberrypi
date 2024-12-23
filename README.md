@@ -1,3 +1,7 @@
+[注意]現在デバッグ中のため、正常動作しません。  
+rfriends3イメージからのインストール簡易版を使用ください。    
+https://github.com/rfriends/rfriends_raspberrypi/wiki  
+  
 raspberrypi用のrfriends3のインストール方法です。  
 現在は、新規イメージのみを想定しています。  
   
@@ -18,4 +22,4 @@ raspberrypi用のrfriends3のインストール方法です。
    http://xxx.xxx.xxx.xxx:8000
    
 rfriends3イメージからのインストール簡易版は以下を参照ください。  
-https://github.com/rfriends/rfriends_raspberrypi/wiki
+https://github.com/rfriends/rfriends_raspberrypi/wiki  　　
