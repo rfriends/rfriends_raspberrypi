@@ -27,6 +27,7 @@ echo
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
+echo ###### step1
 #sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get -y install exim4
 #
@@ -78,6 +79,7 @@ mkdir -p /home/$user/smbdir/usr2
 # =========================================
 # rfriends3のインストール
 # =========================================
+echo ###### step2
 cd  ~/
 sudo apt-get install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
@@ -86,6 +88,7 @@ sh rfriends3_ubuntu.sh
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
+echo ###### step3
 grep rfriends /etc/fstab > /dev/null
 if [ $? = 1 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
@@ -121,6 +124,7 @@ fi
 # =========================================
 # システムの軽量化
 # =========================================
+echo ###### step4
 sudo systemctl disable dbus
 sudo systemctl disable triggerhappy
 #sudo systemctl disable alsa-utils
@@ -135,12 +139,14 @@ sh $dir/$lighter.sh
 # =========================================
 # 終了
 # =========================================
+echo ###### step5
 #sudo apt-get autoremove
 # =========================================
 # 作成日
 # =========================================
 sudo touch /boot/rf3info
 #
+echo ###### step6
 echo finished
 exit 0
 # -----------------------------------------
