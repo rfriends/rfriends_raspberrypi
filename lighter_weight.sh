@@ -51,7 +51,7 @@ sudo sed -i -e 's/rotate 4/rotate 1/'  ppp
 sudo sed -i -e 's/rotate 4/rotate 1/'  rsyslog
 #sudo sed -i -e 's/rotate 1/rotate 1/' wtmp
 
-#sudo sed -i -e 's/rotate 7/rotate 1/g' samba
+sudo sed -i -e 's/rotate 7/rotate 1/g' samba
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-base
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-paniclog
 # -----------------------------------------
