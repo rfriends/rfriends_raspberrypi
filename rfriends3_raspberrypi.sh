@@ -9,6 +9,11 @@
 # 3.2.0 2024/12/22
 ver=3.2.0
 # =========================================
+echo
+echo rfriends_raspberrypi $ver for RaspberryPi $os
+echo start `date`
+echo
+# =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 if [ $os = 'bookwarm' ]; then
  boot=/boot/firmware
@@ -19,17 +24,18 @@ else
  rc=rc.local
  lighter=lighter_weight
 fi
-# =========================================
-echo
-echo rfriends_raspberrypi $ver for RaspberryPi $os
-echo
-# =========================================
+
+if [ -z $HOME ]; then
+  $homedir=xx=`sh -c 'cd && pwd'`
+else
+  $homedir=$HOME
+fi
+
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
 # -----------------------------------------
 echo exec_step1
-date
-#sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update && sudo apt-get upgrade -y
 sudo apt-get -y install exim4
 #
 # wifi power management off
