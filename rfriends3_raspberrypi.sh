@@ -33,7 +33,7 @@ date
 sudo apt-get -y install exim4
 #
 # wifi power management off
-sudo iwconfig wlan0 power off
+sudo iw dev wlan0 set power_save off
 # -----------------------------------------
 # console
 # -----------------------------------------
