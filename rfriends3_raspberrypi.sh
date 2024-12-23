@@ -133,8 +133,8 @@ fi
 # /etc/ssh/sshd_configを設定する
 # -----------------------------------------
 if [ -e /etc/ssh/sshd_config ]; then
-  sed -i "/#ClientAliveInterval/cClientAliveInterval 60" /etc/ssh/sshd_config
-  sed -i "/#ClientAliveCountMax/cClientAliveCountMax 3"  /etc/ssh/sshd_config
+  sed -i "/^#ClientAliveInterval/c ClientAliveInterval 60" /etc/ssh/sshd_config
+  sed -i "/^#ClientAliveCountMax/c ClientAliveCountMax 3"  /etc/ssh/sshd_config
 fi
 # =========================================
 # システムの軽量化
