@@ -4,12 +4,14 @@ _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
-#
+# -----------------------------------------
 # rfriends
-#
+# -----------------------------------------
+# wifi power management off
+/sbin/iwconfig wlan0 power off
 # -----------------------------------------
 # ディレクトリを作成
-#
+# -----------------------------------------
 #sudo mkdir -p /tmp
 #sudo mkdir -p /var/tmp
 sudo mkdir -p /var/log/ConsoleKit
