@@ -6,8 +6,8 @@
 # 1.60 2021/10/26 add pulseaudio
 # 1.90 2023/07/28 rfriends3
 # 3.0.0 2023/10/30 renew
-# 3.2.0 2024/12/22
-ver=3.2.0
+# 3.2.1 2024/12/24
+ver=3.2.1
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
@@ -26,7 +26,7 @@ else
 fi
 
 if [ -z $HOME ]; then
-  $homedir=xx=`sh -c 'cd && pwd'`
+  $homedir=`sh -c 'cd && pwd'`
 else
   $homedir=$HOME
 fi
@@ -60,6 +60,7 @@ fi
 # -----------------------------------------
 # .vimrcを設定する
 # -----------------------------------------
+cd $homedir
 mv -n .vimrc .vimrc.org
 cat <<EOF > .vimrc
 set encoding=utf-8
@@ -81,13 +82,13 @@ sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
 # -----------------------------------------
 # ディレクトリ作成
 # -----------------------------------------
-mkdir -p /home/$user/tmp
-mkdir -p /home/$user/smbdir/usr2
+mkdir -p $homedir/tmp
+mkdir -p $homedir/smbdir/usr2
 # =========================================
-# rfriends3のインストール
+# rfriends3,samba,lighttpdのインストール
 # =========================================
 echo exec_step2
-cd  ~/
+cd  $homedir
 sudo apt-get install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
@@ -154,7 +155,7 @@ echo exec_step5
 sudo touch /boot/rf3info
 #
 echo exec_step6
-date
+echo end `date`
 echo finished
 exit 0
 # -----------------------------------------
