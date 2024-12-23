@@ -7,6 +7,9 @@ fi
 # -----------------------------------------
 # rfriends
 # -----------------------------------------
+# wifi power management off
+nmcli con mod preconfigured wifi.powersave disable
+# -----------------------------------------
 # lighttpd
 rm /home/rfriendsuser/lighttpd/error.log
 # -----------------------------------------
