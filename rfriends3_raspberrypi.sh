@@ -26,9 +26,9 @@ else
 fi
 
 if [ -z $HOME ]; then
-  $homedir=`sh -c 'cd && pwd'`
+  homedir=`sh -c 'cd && pwd'`
 else
-  $homedir=$HOME
+  homedir=$HOME
 fi
 
 dir=$(cd $(dirname $0);pwd)
