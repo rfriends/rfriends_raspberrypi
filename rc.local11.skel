@@ -1,3 +1,6 @@
+#!/bin/sh -e
+#
+# rc.local
 #
 # Print the IP address
 _IP=$(hostname -I) || true
@@ -49,3 +52,4 @@ if [ "$_IP" ]; then
 fi
 
 sh rfriendshomedir/rfriends3/rfriends3_boot.sh
+exit 0
