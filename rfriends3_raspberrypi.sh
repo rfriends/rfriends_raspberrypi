@@ -148,6 +148,7 @@ if [ $? != 0 ]; then
 fi
 # -------------------------------
 sudo cp -f $dir/rc.local /etc/rc.local
+sudo chown root:root /etc/rc.local
 sudo chmod +x /etc/rc.local
 # -----------------------------------------
 # /etc/ssh/sshd_configを設定する
