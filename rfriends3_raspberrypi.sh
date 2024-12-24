@@ -21,8 +21,8 @@ if [ $os = 'bookworm' ]; then
  lighter=lighter_weight12
 else
  boot=/boot
- rc=rc.local
- lighter=lighter_weight
+ rc=rc.local11
+ lighter=lighter_weight11
 fi
 
 if [ -z $HOME ]; then
