@@ -33,6 +33,8 @@ fi
 
 dir=$(cd $(dirname $0);pwd)
 user=`whoami`
+sdir=s%rfriendshomedir%${homedir}%g
+susr=s%rfriendsuser%$user%g
 # -----------------------------------------
 echo exec_step1
 sudo apt-get update && sudo apt-get upgrade -y
@@ -109,11 +111,21 @@ fi
 # =========================================
 # rc.localを設定する
 # =========================================
+sed -e sdir $dir/$rc.skel > $dir/rfriends-rc.local.sh
+sudo cp -f $dir/rfriends-rc.local.sh /usr/local/bin/rfriends-rc.local.sh
+sudo chmod +x /usr/local/bin/rfriends-rc.local.sh
+
 if [ -e /etc/rc.local ]; then
   sudo cp -f /etc/rc.local /etc/rc.local.org
+else
+cat <<EOF | sudo tee /etc/rc.local > /dev/null
+#!/bin/sh -e
+# rfriends
+sh /usr/local/bin/rfriends-rc.local.sh
+EOF
 fi
 #
-sed -e "s/rfriendshomedir/$homedir/g" $dir/$rc.skel > $dir/rc.local
+sed -e "s%rfriendshomedir$homedir/g" $dir/$rc.skel > $dir/rc.local
 sudo cp -f $dir/rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
 # -----------------------------------------
