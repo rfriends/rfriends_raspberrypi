@@ -112,7 +112,7 @@ fi
 grep rfriends /etc/rc.local > /dev/null
 if [ $? != 0 ]; then
   sudo cp -n /etc/rc.local /etc/rc.local.org
-  sed -i 's/rfriendsuser/$user/g' $dir/$rc
+  sed -i 's/rfriendshomedir/$homedir/g' $dir/$rc
   cat $dir/$rc | sudo tee -a /etc/rc.local > /dev/null
 fi
 # -----------------------------------------
