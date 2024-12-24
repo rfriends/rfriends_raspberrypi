@@ -2,6 +2,9 @@
 # -----------------------------------------
 # rfriends-rc.local
 # -----------------------------------------
+homedir=rfriendshomedir
+user=rfriendsuser
+# -----------------------------------------
 # wifi power management off
 nmcli con mod preconfigured wifi.powersave disable
 # -----------------------------------------
