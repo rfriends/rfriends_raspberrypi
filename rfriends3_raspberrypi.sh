@@ -58,17 +58,6 @@ VIDEOMODE=
 EOF
 fi
 # -----------------------------------------
-# .vimrcを設定する
-# -----------------------------------------
-cd $homedir
-mv -n .vimrc .vimrc.org
-cat <<EOF > .vimrc
-set encoding=utf-8
-set fileencodings=iso-2022-jp,euc-jp,sjis,utf-8
-set fileformats=unix,dos,mac
-EOF
-chmod 644 .vimrc
-# -----------------------------------------
 # swap
 # -----------------------------------------
 sudo systemctl stop dphys-swapfile
