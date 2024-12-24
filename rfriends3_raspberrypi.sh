@@ -15,7 +15,7 @@ echo start `date`
 echo
 # =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
-if [ $os = 'bookwarm' ]; then
+if [ $os = 'bookworm' ]; then
  boot=/boot/firmware
  rc=rc.local12
  lighter=lighter_weight12
@@ -97,7 +97,7 @@ tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
 # mount ramdisk /home/$user/tmp
 tmpfs $homedir/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 #
-# mount usb memory /home/$user/smbdir
+# mount usb memory $homedir/smbdir
 #
 #UUID= $homedir/smbdir   ext4    defaults    0   0
 #PARTUUID= $homedir/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
