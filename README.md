@@ -1,3 +1,6 @@
+現在、メンテナンス中  
+  
+  
 [注意] bookwormでは正常動作しません。bullseyeを使用してください。   
   
 raspberrypi用のrfriends3のインストール方法です。  
