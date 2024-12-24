@@ -2,6 +2,9 @@
 # -----------------------------------------
 # rfriends-rc.local
 # -----------------------------------------
+homedir=rfriendshomedir
+user=rfriendsuser
+# -----------------------------------------
 # wifi power management off
 sudo /usr/sbin/iwconfig wlan0 power off
 # -----------------------------------------
