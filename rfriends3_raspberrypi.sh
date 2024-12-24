@@ -111,21 +111,42 @@ fi
 # =========================================
 # rc.localを設定する
 # =========================================
-sed -e sdir $dir/$rc.skel > $dir/rfriends-rc.local.sh
-sudo cp -f $dir/rfriends-rc.local.sh /usr/local/bin/rfriends-rc.local.sh
-sudo chmod +x /usr/local/bin/rfriends-rc.local.sh
-
+rfsh=rfriends-rclocal.sh
+# -----------------------------------------
+# new sh
+sed -e sdir $dir/$rc.skel > $dir/$rfsh
+sudo cp -f $dir/$rfsh /usr/local/bin/$rfsh
+sudo chmod +x /usr/local/bin/$rfsh
+# -------------------------------
+# 以前の形式のものがあった場合
+grep "/home/rpi/rfriends3/rfriends3_boot.sh" /etc/rc.local > /dev/null
+if [ $? = 0 ]; then
+  sudo mv -f /etc/rc.local /etc/rc.local.org
+fi
+# -------------------------------
+# /etc/rc.localをローカルに保存
 if [ -e /etc/rc.local ]; then
-  sudo cp -f /etc/rc.local /etc/rc.local.org
+  cat /etc/rc.local > $dir/rc.local
 else
-cat <<EOF | sudo tee /etc/rc.local > /dev/null
+cat << EOF $dir/rc.local
 #!/bin/sh -e
 # rfriends
-sh /usr/local/bin/rfriends-rc.local.sh
+sh /usr/local/bin/$rfsh
+exit 0
 EOF
 fi
-#
-sed -e "s%rfriendshomedir$homedir/g" $dir/$rc.skel > $dir/rc.local
+# -------------------------------
+# exit 0 追加
+grep "exit 0" $dir/rc.local > /dev/null
+if [ $? != 0 ]; then
+  sed '$a exit 0' $dir/rc.local
+fi
+# -------------------------------
+grep "/usr/local/bin/$rfsh" $dir/rc.local > /dev/null
+if [ $? != 0 ]; then
+  sed "/exit 0/i sh /usr/local/bin/$rfsh" $dir/rc.local
+fi
+# -------------------------------
 sudo cp -f $dir/rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
 # -----------------------------------------
