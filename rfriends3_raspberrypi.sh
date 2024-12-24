@@ -6,8 +6,8 @@
 # 1.60 2021/10/26 add pulseaudio
 # 1.90 2023/07/28 rfriends3
 # 3.0.0 2023/10/30 renew
-# 3.2.1 2024/12/24
-ver=3.2.1
+# 3.2.2 2024/12/25
+ver=3.2.2
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
