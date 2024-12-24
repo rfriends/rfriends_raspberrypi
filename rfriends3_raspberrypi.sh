@@ -68,11 +68,6 @@ sudo systemctl enable dphys-swapfile
 # -----------------------------------------
 sudo sed -i "/^vm.swappiness/d" /etc/sysctl.conf
 sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
-# -----------------------------------------
-# ディレクトリ作成
-# -----------------------------------------
-mkdir -p $homedir/tmp
-mkdir -p $homedir/smbdir/usr2
 # =========================================
 # rfriends3,samba,lighttpdのインストール
 # =========================================
@@ -86,6 +81,8 @@ sh rfriends3_ubuntu.sh
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
 echo exec_step3
+mkdir -p $homedir/tmp
+#
 grep rfriends /etc/fstab > /dev/null
 if [ $? != 0 ]; then
 cat <<EOF | sudo tee -a /etc/fstab > /dev/null
@@ -98,12 +95,12 @@ tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
 tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
 #
 # mount ramdisk /home/$user/tmp
-tmpfs /home/$user/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
+tmpfs $homedir/tmp tmpfs defaults,size=320m,noatime,mode=0777 0 0
 #
 # mount usb memory /home/$user/smbdir
 #
-#UUID= /home/$user/smbdir   ext4    defaults    0   0
-#PARTUUID= /home/$user/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
+#UUID= $homedir/smbdir   ext4    defaults    0   0
+#PARTUUID= $homedir/smbdir/usbdisk exfat-fuse  nofail,defaults,nonempty,noatime,uid=1000,gid=1000 0 0
 #
 EOF
 else 
