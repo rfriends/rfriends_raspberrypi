@@ -109,12 +109,13 @@ fi
 # =========================================
 # rc.localを設定する
 # =========================================
-grep rfriends /etc/rc.local > /dev/null
-if [ $? != 0 ]; then
-  sudo cp -n /etc/rc.local /etc/rc.local.org
-  sed -e 's/rfriendshomedir/$homedir/g' $dir/$rc.skel > $dir/rc.local
-  cat $dir/rc.local | sudo tee -a /etc/rc.local > /dev/null
+if [ -e /etc/rc.local ]; then
+  sudo cp -f /etc/rc.local /etc/rc.local.org
 fi
+#
+sed -e 's/rfriendshomedir/$homedir/g' $dir/$rc.skel > $dir/rc.local
+sudo cp -f $dir/rc.local /etc/rc.local
+sudo chmod +x /etc/rc.local
 # -----------------------------------------
 # /etc/ssh/sshd_configを設定する
 # -----------------------------------------
