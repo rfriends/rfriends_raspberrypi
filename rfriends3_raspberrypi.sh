@@ -113,7 +113,7 @@ if [ -e /etc/rc.local ]; then
   sudo cp -f /etc/rc.local /etc/rc.local.org
 fi
 #
-sed -e 's/rfriendshomedir/$homedir/g' $dir/$rc.skel > $dir/rc.local
+sed -e "s/rfriendshomedir/$homedir/g" $dir/$rc.skel > $dir/rc.local
 sudo cp -f $dir/rc.local /etc/rc.local
 sudo chmod +x /etc/rc.local
 # -----------------------------------------
