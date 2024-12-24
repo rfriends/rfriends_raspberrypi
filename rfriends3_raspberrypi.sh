@@ -63,7 +63,7 @@ fi
 # swap
 # -----------------------------------------
 sudo systemctl stop dphys-swapfile
-sudo sed -i "/^CONF_SWAPSIZE/cCONF_SWAPSIZE=256" /etc/dphys-swapfile
+sudo sed -i "/^CONF_SWAPSIZE/c CONF_SWAPSIZE=256" /etc/dphys-swapfile
 sudo systemctl enable dphys-swapfile
 # -----------------------------------------
 # swappiness
@@ -180,7 +180,7 @@ echo exec_step5
 # =========================================
 # 作成日
 # =========================================
-sudo touch /boot/rf3info
+sudo touch $boot/rf3info
 #
 echo exec_step6
 echo end `date`
