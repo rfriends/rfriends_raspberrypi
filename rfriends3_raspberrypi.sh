@@ -114,7 +114,9 @@ fi
 rfsh=rfriends-rclocal.sh
 # -----------------------------------------
 # new sh
-sed -e sdir $dir/$rc.skel > $dir/$rfsh
+cp -f $dir/$rc.skel $dir/$rfsh
+sed -i sdir $dir/$rfsh
+sed -i susr $dir/$rfsh
 sudo cp -f $dir/$rfsh /usr/local/bin/$rfsh
 sudo chmod +x /usr/local/bin/$rfsh
 # -------------------------------
