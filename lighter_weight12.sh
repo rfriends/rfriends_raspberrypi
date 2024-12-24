@@ -43,5 +43,9 @@ sudo sed -i -e 's/rotate 7/rotate 1/g' samba
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-base
 sudo sed -i -e 's/rotate 10/rotate 1/' exim4-paniclog
 # -----------------------------------------
+#  rc.localの有効化
+# -----------------------------------------
+sudo systemctl enable rc-local.service
+# -----------------------------------------
 echo finished
 # -----------------------------------------
