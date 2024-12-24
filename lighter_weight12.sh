@@ -6,7 +6,7 @@
 ver=3.2.0
 # =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
-if [ $os = 'bookwarm' ]; then
+if [ $os = 'bookworm' ]; then
  boot=/boot/firmware
 else
  boot=/boot
