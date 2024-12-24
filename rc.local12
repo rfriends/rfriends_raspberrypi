@@ -11,7 +11,7 @@ fi
 nmcli con mod preconfigured wifi.powersave disable
 # -----------------------------------------
 # lighttpd
-rm /home/rfriendsuser/lighttpd/error.log
+rm rfriendshomedir/lighttpd/error.log
 # -----------------------------------------
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
@@ -19,4 +19,4 @@ if [ "$_IP" ]; then
   sudo sh -c "date >> /boot/firmware/IPaddress.txt"
 fi
 
-sh /home/rfriendsuser/rfriends3/rfriends3_boot.sh
+sh rfriendshomedir/rfriends3/rfriends3_boot.sh
