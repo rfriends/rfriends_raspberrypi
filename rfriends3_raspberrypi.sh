@@ -113,6 +113,8 @@ fi
 # rc.localを設定する
 # =========================================
 rfsh=rfriends-rclocal.sh
+cd $dir
+echo $dir
 # -----------------------------------------
 # new sh
 cp -f $dir/$rc.skel $dir/$rfsh
@@ -125,11 +127,13 @@ sudo chmod +x /usr/local/bin/$rfsh
 grep "/home/rpi/rfriends3/rfriends3_boot.sh" /etc/rc.local > /dev/null
 if [ $? = 0 ]; then
   sudo mv -f /etc/rc.local /etc/rc.local.org
+  echo 以前の形式の/etc/rc.localを削除しました
 fi
 # -------------------------------
 # /etc/rc.localをローカルに保存
 if [ -e /etc/rc.local ]; then
   cat /etc/rc.local > $dir/rc.local
+  echo /etc/rc.localをローカルに保存しました
 else
 cat << EOF $dir/rc.local
 #!/bin/sh -e
@@ -137,17 +141,20 @@ cat << EOF $dir/rc.local
 sh /usr/local/bin/$rfsh
 exit 0
 EOF
+  echo /etc/rc.localをローカルに作成しました
 fi
 # -------------------------------
 # exit 0 追加
 grep "exit 0" $dir/rc.local > /dev/null
 if [ $? != 0 ]; then
   sed '$a exit 0' $dir/rc.local
+  echo /etc/rc.localにexit 0を追加しました
 fi
 # -------------------------------
 grep "/usr/local/bin/$rfsh" $dir/rc.local > /dev/null
 if [ $? != 0 ]; then
   sed -i "/exit 0/i sh /usr/local/bin/$rfsh" $dir/rc.local
+  echo /etc/rc.localに新しいshを追加しました
 fi
 # -------------------------------
 sudo cp -f $dir/rc.local /etc/rc.local
