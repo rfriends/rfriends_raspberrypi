@@ -45,6 +45,23 @@ sudo sed -i -e 's/rotate 10/rotate 1/' exim4-paniclog
 # -----------------------------------------
 #  rc.localの有効化
 # -----------------------------------------
+cat <<EOF | sudo tee /etc/systemd/system/rc-local.service > /dev/null
+[Unit]
+ Description=/etc/rc.local Compatibility
+ ConditionPathExists=/etc/rc.local
+
+[Service]
+ Type=forking
+ ExecStart=/etc/rc.local start
+ TimeoutSec=0
+ StandardOutput=tty
+ RemainAfterExit=yes
+ SysVStartPriority=99
+
+[Install]
+ WantedBy=multi-user.target
+EOF
+
 sudo systemctl enable rc-local.service
 # -----------------------------------------
 echo finished
