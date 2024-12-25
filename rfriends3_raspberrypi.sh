@@ -146,7 +146,7 @@ fi
 # -------------------------------
 grep "/usr/local/bin/$rfsh" $dir/rc.local > /dev/null
 if [ $? != 0 ]; then
-  sed "/exit 0/i sh /usr/local/bin/$rfsh" $dir/rc.local
+  sed -i "/exit 0/i sh /usr/local/bin/$rfsh" $dir/rc.local
 fi
 # -------------------------------
 sudo cp -f $dir/rc.local /etc/rc.local
