@@ -16,7 +16,7 @@ Bookworm
    cd  ~/  
    sudo apt-get update && sudo apt-get upgrade -y  
    rm -rf rfriends_raspberrypi  
-   sudo apt install git -y  
+   sudo apt-get install git -y  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
    sh rfriends3_raspberrypi.sh
