@@ -9,6 +9,7 @@ Bookworm
   
   
 1. 純正のimagerを使用してmicroSDを作成する。   
+   https://www.raspberrypi.com/software/
 2. microSDをraspberrypiにセットし起動する。  
    領域拡張が完了するのを待つ。  
 3. sshでraspberrypiにアクセスする。  
