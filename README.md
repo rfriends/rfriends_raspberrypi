@@ -12,12 +12,13 @@ Bookworm
    https://www.raspberrypi.com/software/
 2. microSDをraspberrypiにセットし起動する。  
    領域拡張が完了するのを待つ。  
-3. sshでraspberrypiにアクセスする。  
-4. セットアップシェルを実行する。  
-   cd  ~/  
+3. sshでraspberrypiにアクセスする。
+4. システムを最新にし、gitアプリをインストールする。  
    sudo apt-get update && sudo apt-get upgrade -y  
-   rm -rf rfriends_raspberrypi  
    sudo apt-get install git -y  
+5. セットアップシェルを実行する。  
+   cd  ~/  
+   rm -rf rfriends_raspberrypi  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
    sh rfriends3_raspberrypi.sh
