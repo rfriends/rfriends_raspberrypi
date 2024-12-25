@@ -115,8 +115,8 @@ rfsh=rfriends-rclocal.sh
 # -----------------------------------------
 # new sh
 cp -f $dir/$rc.skel $dir/$rfsh
-sed -i sdir $dir/$rfsh
-sed -i susr $dir/$rfsh
+sed -i $sdir $dir/$rfsh
+sed -i $susr $dir/$rfsh
 sudo cp -f $dir/$rfsh /usr/local/bin/$rfsh
 sudo chmod +x /usr/local/bin/$rfsh
 # -------------------------------
@@ -156,8 +156,8 @@ sudo chmod +x /etc/rc.local
 # /etc/ssh/sshd_configを設定する
 # -----------------------------------------
 if [ -e /etc/ssh/sshd_config ]; then
-  sed -i "/^#ClientAliveInterval/c ClientAliveInterval 60" /etc/ssh/sshd_config
-  sed -i "/^#ClientAliveCountMax/c ClientAliveCountMax 3"  /etc/ssh/sshd_config
+  sudo sed -i "/^#ClientAliveInterval/c ClientAliveInterval 60" /etc/ssh/sshd_config
+  sudo sed -i "/^#ClientAliveCountMax/c ClientAliveCountMax 3"  /etc/ssh/sshd_config
 fi
 # =========================================
 # システムの軽量化
