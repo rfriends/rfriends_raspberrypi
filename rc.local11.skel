@@ -6,19 +6,19 @@ homedir=rfriendshomedir
 user=rfriendsuser
 # -----------------------------------------
 # wifi power management off
-sudo /usr/sbin/iwconfig wlan0 power off
+/usr/sbin/iwconfig wlan0 power off
 # -----------------------------------------
 # ディレクトリを作成
 # -----------------------------------------
-#sudo mkdir -p /tmp
-#sudo mkdir -p /var/tmp
-sudo mkdir -p /var/log/ConsoleKit
-sudo mkdir -p /var/log/samba
-sudo mkdir -p /var/log/fsck
-sudo mkdir -p /var/log/apt
-sudo mkdir -p /var/log/ntpstats
-#sudo chown ntp.ntp /var/log/ntpstats
-sudo mkdir -p /var/log/exim4
+#mkdir -p /tmp
+#mkdir -p /var/tmp
+mkdir -p /var/log/ConsoleKit
+mkdir -p /var/log/samba
+mkdir -p /var/log/fsck
+mkdir -p /var/log/apt
+mkdir -p /var/log/ntpstats
+#chown ntp.ntp /var/log/ntpstats
+mkdir -p /var/log/exim4
 
 chown root.adm /var/log/samba
 chown Debian-exim.adm /var/log/exim4
@@ -30,20 +30,20 @@ rm rfriendshomedir/lighttpd/error.log
 # -----------------------------------------
 # Lastlog, wtmp ,btmp の空ファイルを作成
 #
-#sudo touch /var/log/lastlog
-#sudo touch /var/log/wtmp
-#sudo touch /var/log/btmp
-#sudo chmod 664 /var/log/lastlog
-#sudo chmod 664 /var/log/wtmp
-#sudo chmod 600 /var/log/btmp
-#sudo chown root.utmp /var/log/lastlog
-#sudo chown root.utmp /var/log/wtmp
-#sudo chown root.utmp /var/log/btmp
+#touch /var/log/lastlog
+#touch /var/log/wtmp
+#touch /var/log/btmp
+#chmod 664 /var/log/lastlog
+#chmod 664 /var/log/wtmp
+#chmod 600 /var/log/btmp
+#chown root.utmp /var/log/lastlog
+#chown root.utmp /var/log/wtmp
+#chown root.utmp /var/log/btmp
 # -----------------------------------------
 _IP=$(hostname -I) || true
 if [ "$_IP" ]; then
-  sudo sh -c "echo $_IP > /boot/IPaddress.txt"
-  sudo sh -c "date >> /boot/IPaddress.txt"
+  sh -c "echo $_IP > /boot/IPaddress.txt"
+  sh -c "date >> /boot/IPaddress.txt"
 fi
 
 sh rfriendshomedir/rfriends3/rfriends3_boot.sh
