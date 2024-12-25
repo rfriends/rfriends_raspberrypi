@@ -8,7 +8,7 @@ Bookworm
 ![book](https://github.com/user-attachments/assets/8fe74637-4cb6-44ca-863d-e07c685ab105)
   
   
-1. 純正のimagerを使用してmicroSDを作成する。(bullseye 32bits nodesktop)   
+1. 純正のimagerを使用してmicroSDを作成する。   
 2. microSDをraspberrypiにセットし起動する。  
    領域拡張が完了するのを待つ。  
 3. sshでraspberrypiにアクセスする。  
