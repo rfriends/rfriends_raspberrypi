@@ -178,7 +178,10 @@ sh $dir/$lighter.sh
 # 終了
 # =========================================
 echo exec_step5
+cd $homedir
 #sudo apt-get autoremove
+#rm -rf rfriends_raspberrypi
+#rm -rf rfriends_ubuntu
 # =========================================
 # 作成日
 # =========================================
