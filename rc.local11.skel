@@ -40,7 +40,7 @@ rm rfriendshomedir/lighttpd/error.log
 #chown root.utmp /var/log/wtmp
 #chown root.utmp /var/log/btmp
 # -----------------------------------------
-_IP=$(hostname -I) || true
+_IP=`hostname -I` || true
 if [ "$_IP" ]; then
   sh -c "echo $_IP > /boot/IPaddress.txt"
   sh -c "date >> /boot/IPaddress.txt"
