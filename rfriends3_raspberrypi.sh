@@ -75,6 +75,7 @@ sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
 # =========================================
 echo exec_step2
 cd  $homedir
+rm -rf rfriends_ubuntu
 sudo apt-get install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
