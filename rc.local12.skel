@@ -6,15 +6,15 @@ homedir=rfriendshomedir
 user=rfriendsuser
 # -----------------------------------------
 # wifi power management off
-sudo iwconfig wlan0 power off
+ iwconfig wlan0 power off
 # -----------------------------------------
 # lighttpd
 rm rfriendshomedir/lighttpd/error.log
 # -----------------------------------------
-_IP=$(hostname -I) || true
+_IP=`hostname -I` || true
 if [ "$_IP" ]; then
-  sudo sh -c "echo $_IP > /boot/firmware/IPaddress.txt"
-  sudo sh -c "date >> /boot/firmware/IPaddress.txt"
+   sh -c "echo $_IP > /boot/firmware/IPaddress.txt"
+   sh -c "date >> /boot/firmware/IPaddress.txt"
 fi
 
 sh rfriendshomedir/rfriends3/rfriends3_boot.sh
