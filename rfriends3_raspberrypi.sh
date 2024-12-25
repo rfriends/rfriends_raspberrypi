@@ -117,10 +117,10 @@ cd $dir
 echo $dir
 # -----------------------------------------
 # new sh
-cp -f $dir/$rc.skel $dir/$rfsh
-sed -i $sdir $dir/$rfsh
-sed -i $susr $dir/$rfsh
-sudo cp -f $dir/$rfsh /usr/local/bin/$rfsh
+cp -f $rc.skel $rfsh
+sed -i $sdir $rfsh
+sed -i $susr $rfsh
+sudo cp -f $rfsh /usr/local/bin/$rfsh
 sudo chmod +x /usr/local/bin/$rfsh
 # -------------------------------
 # 以前の形式のものがあった場合
@@ -132,32 +132,32 @@ fi
 # -------------------------------
 # /etc/rc.localをローカルに保存
 if [ -e /etc/rc.local ]; then
-  cat /etc/rc.local > $dir/rc.local
+  cat /etc/rc.local > rc.local
   echo /etc/rc.localをローカルに保存しました
 else
-cat << EOF $dir/rc.local
+cat << EOF > rc.local
 #!/bin/sh -e
 # rfriends
 sh /usr/local/bin/$rfsh
 exit 0
 EOF
-  echo /etc/rc.localをローカルに作成しました
+  echo rc.localをローカルに作成しました
 fi
 # -------------------------------
 # exit 0 追加
-grep "exit 0" $dir/rc.local > /dev/null
+grep "exit 0" rc.local > /dev/null
 if [ $? != 0 ]; then
-  sed '$a exit 0' $dir/rc.local
-  echo /etc/rc.localにexit 0を追加しました
+  sed '$a exit 0' rc.local
+  echo rc.localにexit 0を追加しました
 fi
 # -------------------------------
-grep "/usr/local/bin/$rfsh" $dir/rc.local > /dev/null
+grep "/usr/local/bin/$rfsh" rc.local > /dev/null
 if [ $? != 0 ]; then
-  sed -i "/exit 0/i sh /usr/local/bin/$rfsh" $dir/rc.local
-  echo /etc/rc.localに新しいshを追加しました
+  sed -i "/exit 0/i sh /usr/local/bin/$rfsh" rc.local
+  echo rc.localに新しいshを追加しました
 fi
 # -------------------------------
-sudo cp -f $dir/rc.local /etc/rc.local
+sudo cp -f rc.local /etc/rc.local
 sudo chown root:root /etc/rc.local
 sudo chmod +x /etc/rc.local
 # -----------------------------------------
