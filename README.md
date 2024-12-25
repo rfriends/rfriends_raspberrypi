@@ -14,7 +14,7 @@ Bookworm
 3. sshでraspberrypiにアクセスする。  
 4. セットアップシェルを実行する。  
    cd  ~/  
-   sudo apt update && sudo apt upgrade -y  
+   sudo apt-get update && sudo apt-get upgrade -y  
    rm -rf rfriends_raspberrypi  
    sudo apt install git -y  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
