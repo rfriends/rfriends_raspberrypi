@@ -1,5 +1,12 @@
 raspberrypi用のrfriends3のインストール方法です。  
 現在は、新規イメージのみを想定しています。  
+
+Bullseye
+![bbulls](https://github.com/user-attachments/assets/b70bfbd6-53d4-4ff8-9e96-c73969b3fde8)
+  
+Bookworm  
+![book](https://github.com/user-attachments/assets/8fe74637-4cb6-44ca-863d-e07c685ab105)
+  
   
 1. 純正のimagerを使用してmicroSDを作成する。(bullseye 32bits nodesktop)   
 2. microSDをraspberrypiにセットし起動する。  
