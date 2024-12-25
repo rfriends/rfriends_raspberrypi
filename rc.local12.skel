@@ -6,7 +6,7 @@ homedir=rfriendshomedir
 user=rfriendsuser
 # -----------------------------------------
 # wifi power management off
-nmcli con mod preconfigured wifi.powersave disable
+sudo iwconfig wlan0 power off
 # -----------------------------------------
 # lighttpd
 rm rfriendshomedir/lighttpd/error.log
