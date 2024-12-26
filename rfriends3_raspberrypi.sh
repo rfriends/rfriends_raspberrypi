@@ -1,8 +1,8 @@
 #!/bin/sh -e
 #
-# ログありで実行したい場合は、このshを使用して下さい。
+#  install
 #
-sh rfriends3_raspberrypi.sh 2>&1 | tee rpi.log
+sh rfriends3_raspberrypi.sh 2>&1 | tee rpi_install.log
 #
 echo
 echo `cat ../rfriends3/_Rfriends3`
