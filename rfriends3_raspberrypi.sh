@@ -1,14 +1,16 @@
 #!/bin/sh -e
-#
+# --------------------------------------
 #  install
+# --------------------------------------
 #
+sh rfriends3_raspberrypi.sh 2>&1 | tee rpi_install.log
+#
+# --------------------------------------
 if [ -z $HOME ]; then
   homedir=`sh -c 'cd && pwd'`
 else
   homedir=$HOME
 fi
-#
-sh rfriends3_raspberrypi.sh 2>&1 | tee rpi_install.log
 #
 echo
 echo `cat $homedir/rfriends3/_Rfriends3`
