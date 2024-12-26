@@ -2,7 +2,7 @@
 # --------------------------------------
 #  install
 # --------------------------------------
-echo start `date`
+echo
 #
 sh rpi_install.sh 2>&1 | tee rpi_install.log
 #
@@ -23,5 +23,5 @@ echo user : `whoami`
 echo
 echo "`free`"
 #
-echo end `date`
+echo
 exit 0
