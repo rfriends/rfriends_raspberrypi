@@ -2,10 +2,16 @@
 #
 #  install
 #
+if [ -z $HOME ]; then
+  homedir=`sh -c 'cd && pwd'`
+else
+  homedir=$HOME
+fi
+#
 sh rfriends3_raspberrypi.sh 2>&1 | tee rpi_install.log
 #
 echo
-echo `cat ../rfriends3/_Rfriends3`
+echo `cat $homedir/rfriends3/_Rfriends3`
 echo
 echo "`cat /etc/os-release | grep PRETTY_NAME`"
 echo
