@@ -3,7 +3,7 @@
 #  install
 # --------------------------------------
 #
-sh rfriends3_raspberrypi.sh 2>&1 | tee rpi_install.log
+sh rpi_install.sh 2>&1 | tee rpi_install.log
 #
 # --------------------------------------
 if [ -z $HOME ]; then
