@@ -12,7 +12,10 @@ Bookworm
    https://www.raspberrypi.com/software/
 2. microSDをraspberrypiにセットし起動する。  
    領域拡張が完了するのを待つ。  
-3. sshでraspberrypiにアクセスする。
+3. sshでraspberrypiにアクセスする。  
+   ホスト名 myrf3、ユーザ名 rpiuserの場合、  
+   ssh rpiuser@myrf3  
+   でアクセスできます。  
 4. システムを最新にし、gitアプリをインストールする。  
    sudo apt-get update && sudo apt-get upgrade -y  
    sudo apt-get install git -y  
