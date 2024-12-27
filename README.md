@@ -11,8 +11,8 @@ Bookworm
 1. 純正のimagerを使用してmicroSDを作成する。   
    https://www.raspberrypi.com/software/
 2. microSDをraspberrypiにセットし起動する。   
-   初回起動時は領域拡張を行うのでmicroSDのサイズによっては時間がかかります。　　
-   緑のランプが点滅から点灯になるのを待ってください。　　
+   初回起動時は領域拡張を行うのでmicroSDのサイズによっては時間がかかります。  
+   緑のランプが点滅から点灯になるのを待ってください。  
 4. sshでraspberrypiにアクセスする。  
    ホスト名 myrf3、ユーザ名 rpiuserの場合、  
    ssh rpiuser@myrf3  
