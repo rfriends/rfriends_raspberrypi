@@ -10,24 +10,25 @@ Bookworm
   
 1. 純正のimagerを使用してmicroSDを作成する。   
    https://www.raspberrypi.com/software/
-2. microSDをraspberrypiにセットし起動する。  
-   領域拡張が完了するのを待つ。  
-3. sshでraspberrypiにアクセスする。  
+2. microSDをraspberrypiにセットし起動する。   
+   初回起動時は領域拡張を行うのでmicroSDのサイズによっては時間がかかります。　　
+   緑のランプが点滅から点灯になるのを待ってください。　　
+4. sshでraspberrypiにアクセスする。  
    ホスト名 myrf3、ユーザ名 rpiuserの場合、  
    ssh rpiuser@myrf3  
    でアクセスできます。  
-4. システムを最新にし、gitアプリをインストールする。  
+5. システムを最新にし、gitアプリをインストールする。  
    sudo apt-get update && sudo apt-get upgrade -y  
    sudo apt-get install git -y  
-5. セットアップシェルを実行する。  
+6. セットアップシェルを実行する。  
    cd  ~/  
    rm -rf rfriends_raspberrypi  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
    sh rfriends3_raspberrypi.sh
-6. raspberrypiを再起動する。  
+7. raspberrypiを再起動する。  
    sudo reboot  
-7. Webブラウザを使用してrfriendsにアクセスする。  
+8. Webブラウザを使用してrfriendsにアクセスする。  
    http://xxx.xxx.xxx.xxx:8000
    
 rfriends3イメージからのインストール簡易版は以下を参照ください。  
