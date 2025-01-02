@@ -171,7 +171,7 @@ fi
 # システムの軽量化
 # =========================================
 echo exec_step4
-sudo systemctl disable dbus
+#sudo systemctl disable dbus
 sudo systemctl disable triggerhappy
 #sudo systemctl disable alsa-utils
 #sudo systemctl disable lightdm
