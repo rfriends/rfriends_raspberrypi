@@ -79,7 +79,8 @@ rm -rf rfriends_ubuntu
 sudo apt-get install git
 git clone https://github.com/rfriends/rfriends_ubuntu.git
 cd rfriends_ubuntu
-sh rfriends3_ubuntu.sh
+#sh rfriends3_ubuntu.sh
+sh ubuntu.sh
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
