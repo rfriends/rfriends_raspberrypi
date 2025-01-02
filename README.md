@@ -1,6 +1,7 @@
 raspberrypi用のrfriends3のインストール方法です。  
-現在は、新規イメージのみを想定しています。  
-
+メモリが少ない等、主に非力な機種用です。  
+余裕のある機種の場合は、rfriends3_ubuntu.gitでいいと思います。   
+  
 Bullseye  
 ![bbulls](https://github.com/user-attachments/assets/b70bfbd6-53d4-4ff8-9e96-c73969b3fde8)
   
