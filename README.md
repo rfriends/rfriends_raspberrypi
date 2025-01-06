@@ -25,7 +25,7 @@ Bookworm
    rm -rf rfriends_raspberrypi  
    git clone https://github.com/rfriends/rfriends_raspberrypi.git  
    cd rfriends_raspberrypi  
-   sh rfriends3_raspberrypi.sh
+   sh rfriends_raspberrypi.sh
 7. raspberrypiを再起動する。  
    sudo reboot  
 8. Webブラウザを使用してrfriendsにアクセスする。  
