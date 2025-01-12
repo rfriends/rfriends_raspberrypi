@@ -1,5 +1,7 @@
 raspberrypi用のrfriends3のインストール方法です。  
-メモリが少ない等、主に非力な機種やNO DESKTOP用です。    
+メモリが少ない等、主に非力な機種やNO DESKTOP用です。  
+パワーのある機種は以下で。  
+https://github.com/rfriends/rfriends_ubuntu  
     
 cd  ~/    
 rm -rf rfriends_raspberrypi  
