@@ -7,7 +7,8 @@
 # 1.90 2023/07/28 rfriends3
 # 3.0.0 2023/10/30 renew
 # 3.2.2 2024/12/25
-ver=3.2.2
+# 3.3.0 2025/01/25 install from rfriends3_core
+ver=3.3.0
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
@@ -77,14 +78,15 @@ echo exec_step2
 cd  $homedir
 rm -rf rfriends_ubuntu
 sudo apt-get install git
-git clone https://github.com/rfriends/rfriends_ubuntu.git
+#git clone https://github.com/rfriends/rfriends_ubuntu.git
+git clone https://github.com/rfriends/rfriends3_core.git
 if [ $? != 0 ]; then
   echo クローンに失敗しました。
   echo 少し時間をおいて再度実行してください。
   exit 1
 fi
-cd rfriends_ubuntu
-sh ubuntu_install.sh
+cd rfriends3_core
+sh install_ubuntu.sh
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
