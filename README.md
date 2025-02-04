@@ -12,10 +12,10 @@ sh rfriends_raspberrypi.sh
 インストールの詳細については以下を参照ください。  
   
 ・OSイメージ編  
-https://github.com/rfriends/rfriends/blob/gh-pages/distro/raspberrypi.md  
+https://rfriends.github.io/rfriends/distro/raspberrypi.html  
   
 ・OSイメージ編  
-https://github.com/rfriends/rfriends/blob/gh-pages/distro/raspi_image.md  
+https://rfriends.github.io/rfriends/distro/raspi_image.html  
   
 
   
