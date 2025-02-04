@@ -11,7 +11,7 @@ sh rfriends_raspberrypi.sh
    
 インストールの詳細については以下を参照ください。  
   
-・OSイメージ編  
+・OSスクリプト編  
 https://rfriends.github.io/rfriends/distro/raspberrypi.html  
   
 ・OSイメージ編  
