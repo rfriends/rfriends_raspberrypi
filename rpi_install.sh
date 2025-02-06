@@ -8,7 +8,8 @@
 # 3.0.0 2023/10/30 renew
 # 3.2.2 2024/12/25
 # 3.3.0 2025/01/25 install from rfriends3_core
-ver=3.3.0
+# 3.3.1 2025/02/06 fstab 16M->64M
+ver=3.3.1
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
@@ -101,7 +102,7 @@ cat <<EOF | sudo tee -a /etc/fstab > /dev/null
 #
 # mount ramdisk /tmp,/var/tmp,/var/log
 tmpfs /tmp     tmpfs defaults,size=64m,noatime,mode=1777 0 0
-tmpfs /var/tmp tmpfs defaults,size=16m,noatime,mode=1777 0 0
+tmpfs /var/tmp tmpfs defaults,size=64m,noatime,mode=1777 0 0
 tmpfs /var/log tmpfs defaults,size=32m,noatime,mode=0755 0 0
 #
 # mount ramdisk /home/$user/tmp
