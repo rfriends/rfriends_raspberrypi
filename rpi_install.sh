@@ -65,7 +65,7 @@ fi
 # swap
 # -----------------------------------------
 sudo systemctl stop dphys-swapfile
-sudo sed -i "/^CONF_SWAPSIZE/c CONF_SWAPSIZE=256" /etc/dphys-swapfile
+sudo sed -i "/^CONF_SWAPSIZE/c CONF_SWAPSIZE=512" /etc/dphys-swapfile
 sudo systemctl enable dphys-swapfile
 # -----------------------------------------
 # swappiness
