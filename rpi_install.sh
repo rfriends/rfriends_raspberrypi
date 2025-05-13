@@ -9,7 +9,8 @@
 # 3.2.2 2024/12/25
 # 3.3.0 2025/01/25 install from rfriends3_core
 # 3.3.1 2025/02/06 fstab 16M->64M
-ver=3.3.1
+# 3.3.2 2025/05/14 mod
+ver=3.3.2
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
@@ -76,10 +77,9 @@ sudo sed -i '$ avm.swappiness = 1' /etc/sysctl.conf
 # rfriends3,samba,lighttpdのインストール
 # =========================================
 echo exec_step2
-cd  $homedir
-rm -rf rfriends_ubuntu
 sudo apt-get install git
-#git clone https://github.com/rfriends/rfriends_ubuntu.git
+cd  $homedir
+rm -rf rfriends3_core
 git clone https://github.com/rfriends/rfriends3_core.git
 if [ $? != 0 ]; then
   echo クローンに失敗しました。
@@ -87,7 +87,7 @@ if [ $? != 0 ]; then
   exit 1
 fi
 cd rfriends3_core
-sh install_ubuntu.sh
+sh install_debian.sh
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
