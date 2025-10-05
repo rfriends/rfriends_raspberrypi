@@ -115,6 +115,10 @@ else
  sh install_debian.sh
 fi
 # -----------------------------------------
+# crontab
+# /var/spool/cron/crontabs/rpi
+crontab $conf/crontab
+# -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
 echo exec_step3
