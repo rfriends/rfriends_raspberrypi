@@ -53,6 +53,19 @@ sudo apt-get -y install exim4
 # wifi power management off
 sudo iw dev wlan0 set power_save off
 # -----------------------------------------
+# localeを設定する
+#
+sudo mv -n /etc/default/locale /etc/default/locale.org
+sudo cp -p $conf/locale /etc/default/locale
+sudo chmod 644 /etc/default/locale
+# -----------------------------------------
+# ジャーナル
+#Storage=none
+sudo mv -n /etc/systemd/journald.conf /etc/systemd/journald.conf.org
+sudo cp -p $conf/journald.conf /etc/systemd
+sudo chmod 644 /etc/systemd/journald.conf
+sudo chown root:root /etc/systemd/journald.conf
+# -----------------------------------------
 # console
 # -----------------------------------------
 if [ ! -e /etc/default/console-setup ]; then
@@ -204,20 +217,22 @@ sudo sed -i '/^camera_auto_detect/s/^/#/' $boot/config.txt
 #
 sh $dir/$lighter.sh
 # =========================================
-# 終了
-# =========================================
-echo exec_step5
-cd $homedir
-#sudo apt-get autoremove
-#rm -rf rfriends_raspberrypi
-#rm -rf rfriends_ubuntu
-# =========================================
 # 作成日
 # =========================================
-sudo touch $boot/rf3info
-#
+echo exec_step5
+sudo rm $boot/rfriends.ip
+sudo rm $boot/rfriends.wlan
+#sudo touch $boot/rf3info
+sudo touch $boot/rfriends.create
+# =========================================
+# 終了
+# =========================================
 echo exec_step6
 echo end `date`
 echo finished
+#
+#sudo apt-get autoremove
+export HISTFILESIZE=0
+export HISTSIZE=0 
 exit 0
 # -----------------------------------------
