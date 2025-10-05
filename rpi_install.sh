@@ -10,7 +10,8 @@
 # 3.3.0 2025/01/25 install from rfriends3_core
 # 3.3.1 2025/02/06 fstab 16M->64M
 # 3.3.2 2025/05/14 mod
-ver=3.3.2
+# 3.4.0 2025/10/06 trixie (仮)
+ver=3.4.0
 # =========================================
 echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
@@ -18,7 +19,11 @@ echo start `date`
 echo
 # =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
-if [ $os = 'bookworm' ]; then
+if [ $os = 'trixie' ]; then
+ boot=/boot/firmware
+ rc=rc.local12
+ lighter=lighter_weight12
+elif [ $os = 'bookworm' ]; then
  boot=/boot/firmware
  rc=rc.local12
  lighter=lighter_weight12
@@ -65,9 +70,11 @@ fi
 # -----------------------------------------
 # swap
 # -----------------------------------------
-sudo systemctl stop dphys-swapfile
-sudo sed -i "/^CONF_SWAPSIZE/c CONF_SWAPSIZE=512" /etc/dphys-swapfile
-sudo systemctl enable dphys-swapfile
+if [ $os = 'bullseye' ]; then
+ sudo systemctl stop dphys-swapfile
+ sudo sed -i "/^CONF_SWAPSIZE/c CONF_SWAPSIZE=512" /etc/dphys-swapfile
+ sudo systemctl enable dphys-swapfile
+fi
 # -----------------------------------------
 # swappiness
 # -----------------------------------------
@@ -87,7 +94,11 @@ if [ $? != 0 ]; then
   exit 1
 fi
 cd rfriends3_core
-sh install_debian.sh
+if [ $os = 'trixie' ]; then
+ sh install_debian_apache2.sh
+else
+ sh install_debian.sh
+fi
 # -----------------------------------------
 # テンポラリ領域をtmpfs（Ramdisk上）に設定する
 # -----------------------------------------
