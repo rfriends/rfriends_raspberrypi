@@ -1,0 +1,12 @@
+# rfriends crontab template (2023/10/19)
+#
+#SHELL=/bin/sh
+#PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+BASE_DIR=/home/rpi/rfriends3
+# m h  dom mon dow   command
+#
+# first job
+25 05 * * * sh $BASE_DIR/script/ex_rfriends.sh
+#
+# second job
+25 17 * * * sh $BASE_DIR/script/ex_rfriends.sh

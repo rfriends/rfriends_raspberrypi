@@ -1,0 +1,70 @@
+#!/bin/sh -e
+#
+# rc.local
+#
+# This script is executed at the end of each multiuser runlevel.
+# Make sure that the script will "" on success or any other
+# value on error.
+#
+# In order to enable or disable this script just change the execution
+# bits.
+#
+# By default this script does nothing.
+# -----------------------------------------
+DIR=/boot/firmware
+WLAN=$DIR/rfriends.wlan
+# -----------------------------------------
+# /etc/NetworkManager/system-connections/
+#
+if [ -f $WLAN ]; then
+    text=`head -n 1 $WLAN | tr -d '\r' | tr -d '\n' | tr -d ' '`
+    line="${text},,,"
+    ssid=`echo $line | cut -d , -f 1`
+    pass=`echo $line | cut -d , -f 2`
+    country=`echo $line | cut -d , -f 3`
+
+    sh -c "echo 'wlan : $ssid','$pass','$country' >> $DIR/rfriends.ip"
+    sh -c "/usr/lib/raspberrypi-sys-mods/imager_custom set_wlan -p '$ssid' '$pass' '$country'"
+    systemctl start set-wlan
+    rm $WLAN
+fi
+# -----------------------------------------
+# Print the IP address
+_IP=$(hostname -I) || true
+if [ "$_IP" ]; then
+  printf "My IP address is %s\n" "$_IP"
+fi
+sh -c "echo $_IP > $DIR/rfriends.ip"
+sh -c "date >> $DIR/rfriends.ip"
+# -----------------------------------------
+# ディレクトリを作成
+#
+mkdir -p /var/log/samba
+#chown root.adm /var/log/samba
+
+#mkdir -p /tmp
+#mkdir -p /var/tmp
+#mkdir -p /var/log/ConsoleKit
+#mkdir -p /var/log/fsck
+#mkdir -p /var/log/apt
+#mkdir -p /var/log/ntpstats
+#chown ntp.ntp /var/log/ntpstats
+#mkdir ~/tmp
+# -----------------------------------------
+# Lastlog, wtmp ,btmp の空ファイルを作成
+#
+#touch /var/log/lastlog
+#touch /var/log/wtmp
+#touch /var/log/btmp
+#chmod 664 /var/log/lastlog
+#chmod 664 /var/log/wtmp
+#chmod 600 /var/log/btmp
+#chown root.utmp /var/log/lastlog
+#chown root.utmp /var/log/wtmp
+#chown root.utmp /var/log/btmp
+# -----------------------------------------
+sh /home/rpi/rfriends3/rfriends3_boot.sh
+# -----------------------------------------
+sh -c "echo done >> $DIR/rfriends.ip"
+exit 0
+# -----------------------------------------
