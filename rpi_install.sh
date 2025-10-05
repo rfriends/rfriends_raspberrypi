@@ -17,6 +17,7 @@ echo
 echo rfriends_raspberrypi $ver for RaspberryPi $os
 echo start `date`
 echo
+
 # =========================================
 os=`cat /etc/os-release | grep VERSION_CODENAME= | sed s/VERSION_CODENAME=//`
 if [ $os = 'trixie' ]; then
@@ -40,6 +41,7 @@ else
 fi
 
 dir=$(cd $(dirname $0);pwd)
+conf=`pwd`/conf
 user=`whoami`
 sdir=s%rfriendshomedir%${homedir}%g
 susr=s%rfriendsuser%$user%g
